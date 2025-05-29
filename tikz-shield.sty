@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the TikZbricks package
+% A package to draw bricks with tikz
+% Maintained by thomas-saigre
+%
+% Project repository and bug tracker:
+% https://github.com/thomas-saigre/tikz-shield
+%
+% Released under the GNU GENERAL PUBLIC LICENSE v3
+% See https://github.com/thomas-saigre/tikz-shield/blob/main/LICENSE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{tikz-shield}[2025/05/12 version v0.1 Drawing badges with TikZ]
+
+\RequirePackage{tikz}
+\RequirePackage{fontawesome}
+\RequirePackage{hyperref}
+\RequirePackage[most]{tcolorbox}
+
+\definecolor{default-blue}{HTML}{1283c4}
+\definecolor{default-left}{HTML}{5e5e5e}
+
+% Creation of a dropped shadow
+\newcommand{\droptextshadow}[2]{%
+    \tikz[baseline,outer sep=0pt, inner sep=0pt]{
+    % Dropped Shadow
+    \node[#1!40!black] at (0,-0.1ex) {#2};
+    % Text
+    \node[white] at (0,0) {#2};
+}%
+}
+
+
+
+% Draw a badge
+% #1 Color of the right part, by default: blue
+% #2 Left text
+% #3 Right text
+\newcommand{\drawBadge}[3][default-blue]{
+    \tcbsidebyside[
+        bicolor, sidebyside,
+        sidebyside adapt=both,
+        sidebyside gap=5pt,
+        top=0pt,left=0pt,right=0pt,bottom=0pt,
+        boxrule=0pt,rounded corners,
+        interior style={top color=default-left,bottom color=default-left!60!black},
+        segmentation style={top color=#1,bottom color=#1!60!black},
+    ]{  % Left bloc
+        \droptextshadow{default-left}{#2}
+    }{  % Right bloc
+        \droptextshadow{#1}{#3}
+    }
+}
+
