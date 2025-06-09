@@ -1,0 +1,66 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the TikZbricks package
+% A package to draw bricks with tikz
+% Maintained by thomas-saigre
+%
+% Project repository and bug tracker:
+% https://github.com/thomas-saigre/tikz-shield
+%
+% Released under the GNU GENERAL PUBLIC LICENSE v3
+% See https://github.com/thomas-saigre/tikz-shield/blob/main/LICENSE
+%
+% Adapted from https://github.com/samcarter/tikzbricks/blob/main/tikzbricks-doc-settings.sty
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[english]{babel}
+\usepackage[paper=a4paper, margin=2.9cm]{geometry}
+\usepackage{scrlayer-scrpage}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\let\hrulefillx\hrulefill
+\let\hrulefill\hrulefillx
+\usepackage[hang, flushmargin, bottom]{footmisc}
+\usepackage{footnotehyper}
+\makesavenoteenv{tcolorbox}
+\usepackage[all]{nowidow}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=true, breaklinks=true, hyperfootnotes=false]{hyperref}
+\usepackage{xspace}
+\usepackage{inconsolata}
+\usepackage{lastpage}
+
+
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted}
+\tcbset{%
+    fonttitle=\bfseries,
+    sidebyside,
+    center lower,
+    listing engine=minted,
+    minted language=latex,
+    sharp corners,
+    boxrule=0pt,
+    before title={\strut},
+    minted options={breaklines, breakanywhere, fontsize=\small},
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Custom macros
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand*{\CTAN}{\textsc{CTAN}\xspace}
+\providecommand*{\TikZ}{Ti\emph{k}Z\xspace}
+\providecommand*{\miktex}{MiK\TeX\xspace}
+\providecommand*{\texlive}{\TeX{}Live\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Doc blurb
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\packagename}[1]{\def\@packagename{#1}}

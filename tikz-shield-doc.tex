@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the TikZbricks package
+% A package to draw bricks with tikz
+% Maintained by thomas-saigre
+%
+% Project repository and bug tracker:
+% https://github.com/thomas-saigre/tikz-shield
+%
+% Released under the GNU GENERAL PUBLIC LICENSE v3
+% See https://github.com/thomas-saigre/tikz-shield/blob/main/LICENSE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+
+
+
+\input{doc/preamble}
+
+
+\usepackage{tikz-shield}
+
+\newcommand{\tikzshield}{\TikZ-shield}
+
+
+
+% meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{The \tikzshield{}s package}
+\author{%
+    \texorpdfstring{
+    \texttt{thomas-saigre}\\
+    \githubBadge{thomas-saigre/tikz-shield}\\
+    \url{https://ctan.org/pkg/tikzbricks}
+    }{samcarter}}
+\date{Version v0.1 \textendash{} 09/06/2025}
+\packagename{tikz-shield}
+
+
+
+
+% customisation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\footheight}{18.3pt}
+\cfoot{%
+    \drawBadge{\faBook}{\thepage}
+}
+\ohead{}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{scrheadings}
+
+
+\input{doc/introduction}
+
+\input{doc/usage}
+
+
+
+\end{document}
