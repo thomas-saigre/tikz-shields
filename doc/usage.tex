@@ -11,9 +11,30 @@ The color of the right part can be customized, the default color being a rectang
 
 
 \begin{tcblisting}{title={Change color}, lower separated=false}
-\drawBadge[red]{Any text}{you like}
-\drawBadge[white]{Any text}{you like}
+\drawBadge[colorRight=red]{Any text}{you like}
+\drawBadge[colorLeft=white]{Any text}{you like}
+\drawBadge[colorLeft=pink, colorRight=black]{Any text}{you like}
 \end{tcblisting}
+
+
+
+\section{Optional arguments}
+
+Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawBadge} (as well as the other ones described in this document):
+
+\begin{center}
+    \begin{tblr}{
+        colspec = {Q[c, cmd=\texttt]lc},
+        row{1} = {cmd =  \normalfont, bg = default-blue!30},
+        vlines, hlines,
+    }
+    Name & Description & Default value \\
+    colorLeft & Color of the left part of the badge & \texttt{default-left} \textcolor{default-left}{\rule{1em}{1em}} \\
+    colorRight & Color of the right part of the badge & \texttt{default-blue} \textcolor{default-blue}{\rule{1em}{1em}} \\
+    logo & Logo displayed before the text &
+
+    \end{tblr}
+\end{center}
 
 
 
@@ -28,12 +49,17 @@ Some presets are available :
 \end{tcblisting}
 
 \begin{tcblisting}{title={Gitlab badge}, lower separated=false}
-\gitlabBadge[orange]{thomas-saigre/tikz-shield}
+\gitlabBadge[colorRight=orange]{inkscape/inkscape/}
 \end{tcblisting}
 
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
 \begin{tcblisting}{title={Custom forge badge}, lower separated=false}
-\forgeBadge[black][\faCode]{code.videolan.org/videolan/vlc}
+\forgeBadge[colorLeft=black, logo=\faCode]{code.videolan.org/videolan/vlc}
+\forgeBadge[colorLeft=green, logo=\checkmark]{code.videolan.org/videolan/vlc}
 \end{tcblisting}
 
 In all cases, the generated badge is clickable and redirect to the repository provided.
 For \texttt{\\forgeBadge}, the icon can be customized, as well as the color.
+Note that anything can be used as a logo, even a text or a personalized command that you would have created (in previous example
+\mintinline[breaklines]{tex}{\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}).

@@ -20,11 +20,20 @@
 \RequirePackage{xkeyval}
 
 \DeclareOptionX{font}[\sf]{\def\shield@default@font{#1}}
+\DeclareOptionX{colorLeft}[default-left]{\def\shield@default@colorLeft{#1}}
+\DeclareOptionX{colorRight}[default-blue]{\def\shield@default@colorRight{#1}}
 
 \definecolor{default-blue}{HTML}{1283c4}
 \definecolor{default-left}{HTML}{5e5e5e}
 
 \ExecuteOptionsX{font}
+\ExecuteOptionsX{colorLeft}
+\ExecuteOptionsX{colorRight}
+
+
+\define@key{badge}{colorLeft}{\def\badge@colorLeft{#1}}
+\define@key{badge}{colorRight}{\def\badge@colorRight{#1}}
+\define@key{badge}{logo}{\def\badge@logo{#1}}
 
 \ProcessOptionsX
 
@@ -41,52 +50,62 @@
 
 
 % Draw a badge
-% #1 Color of the right part, by default: blue
+% #1 Default options
 % #2 Left text
 % #3 Right text
-\newcommand{\drawBadge}[3][default-blue]{
+\newcommand{\drawBadge}[3][]{
+    \def\badge@colorLeft{\shield@default@colorLeft}
+    \def\badge@colorRight{\shield@default@colorRight}
+    \def\badge@logo{}
+    %
+    \setkeys{badge}{#1}
+    %
     \mbox{
     \hspace{-2ex}
     \tcbsidebyside[
         bicolor, sidebyside,
         sidebyside adapt=both,
         sidebyside gap=5pt,
-        top=0pt,left=0pt,right=0pt,bottom=0pt,
-        boxrule=0pt,rounded corners,
-        interior style={top color=default-left,bottom color=default-left!60!black},
-        segmentation style={top color=#1,bottom color=#1!60!black},
+        top=0pt, left=0pt, right=0pt, bottom=0pt,
+        boxrule=0pt, rounded corners,
+        interior style={top color=\badge@colorLeft, bottom color=\badge@colorLeft!60!black},
+        segmentation style={top color=\badge@colorRight, bottom color=\badge@colorRight!60!black},
     ]{  % Left bloc
         \shield@default@font
-        \droptextshadow{default-left}{#2}
+        \ifx\badge@logo\@empty
+            \droptextshadow{default-left}{#2}
+        \else
+            \droptextshadow{default-left}{\badge@logo\ #2}
+        \fi
     }{  % Right bloc
         \shield@default@font
-        \droptextshadow{#1}{#3}
+        \droptextshadow{\badge@colorRight}{#3}
     }
     \hspace{-2ex}
     }
 }
 
 
-\newcommand{\githubBadge}[2][default-blue]
+\newcommand{\githubBadge}[2][]
 {
     {%
     \hypersetup{hidelinks}%
-    \mbox{\href{https://github.com/#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1]{\faGithub}{github.com/#2}}\hspace{-1ex}}%
+    \mbox{\href{https://github.com/#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1, logo=\faGithub]{}{github.com/#2}}\hspace{-1ex}}%
     }
 }
 
-\newcommand{\gitlabBadge}[2][default-blue]
+\newcommand{\gitlabBadge}[2][]
 {
     {%
     \hypersetup{hidelinks}%
-    \mbox{\href{https://gitlab.com/#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1]{\faGitlab}{gitlab.com/#2}}\hspace{-1ex}}%
+    \mbox{\href{https://gitlab.com/#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1, logo=\faGitlab]{}{gitlab.com/#2}}\hspace{-1ex}}%
     }
 }
 
-\NewDocumentCommand{\forgeBadge}{ O{default-blue} O{\faGitlab} m }
+\newcommand{\forgeBadge}[2][]
 {
     {%
     \hypersetup{hidelinks}%
-    \mbox{\href{https://#3}{\mbox{\hspace{-0.5ex}}\drawBadge[#1]{#2}{#3}}\hspace{-1ex}}%
+    \mbox{\href{https://#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1]{}{gitlab.com/#2}}\hspace{-1ex}}%
     }
 }
