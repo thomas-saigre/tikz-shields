@@ -20,31 +20,53 @@
 \RequirePackage{xkeyval}
 
 \DeclareOptionX{font}[\sf]{\def\shield@default@font{#1}}
-\DeclareOptionX{colorLeft}[default-left]{\def\shield@default@colorLeft{#1}}
-\DeclareOptionX{colorRight}[default-blue]{\def\shield@default@colorRight{#1}}
+\DeclareOptionX{labelColor}[default-left]{\def\shield@default@labelColor{#1}}
+\DeclareOptionX{color}[default-blue]{\def\shield@default@color{#1}}
+\DeclareOptionX{colorLeft}[white]{\def\shield@default@colorLeft{#1}}
+\DeclareOptionX{colorRight}[white]{\def\shield@default@colorRight{#1}}
+\DeclareOptionX{logoColor}[white]{\def\shield@default@logoColor{#1}}
 
 \definecolor{default-blue}{HTML}{1283c4}
 \definecolor{default-left}{HTML}{5e5e5e}
 
 \ExecuteOptionsX{font}
+\ExecuteOptionsX{labelColor}
+\ExecuteOptionsX{color}
 \ExecuteOptionsX{colorLeft}
 \ExecuteOptionsX{colorRight}
+\ExecuteOptionsX{logoColor}
 
 
+\define@key{badge}{labelColor}{\def\badge@labelColor{#1}}
+\define@key{badge}{color}{\def\badge@color{#1}}
 \define@key{badge}{colorLeft}{\def\badge@colorLeft{#1}}
 \define@key{badge}{colorRight}{\def\badge@colorRight{#1}}
 \define@key{badge}{logo}{\def\badge@logo{#1}}
+\define@key{badge}{logoColor}{\def\badge@logoColor{#1}}
 
 \ProcessOptionsX
 
-% Creation of a dropped shadow
-\newcommand{\droptextshadow}[2]{%
+% Creation of a text with dropped shadow
+% #1 Color of background
+% #2 Color of the text
+% #3 Text
+\newcommand{\droptextshadow}[3]{%
     \tikz[baseline,outer sep=0pt, inner sep=0pt]{
     % Dropped Shadow
-    \node[#1!40!black] at (0,-0.1ex) {#2};
+    \node[#1!40!black] at (0,-0.1ex) {#3};
     % Text
-    \node[white] at (0,0) {#2};
-}%
+    \node[#2] at (0,0) {#3};
+    }%
+}
+
+% Creation of a text without dropped shadow
+% #1 Color of the text
+% #2 Text
+\newcommand{\droptextnoshadow}[2]{%
+    \tikz[baseline,outer sep=0pt, inner sep=0pt]{
+    % Text
+    \node[#1] at (0,0) {#2};
+    }%
 }
 
 
@@ -54,9 +76,12 @@
 % #2 Left text
 % #3 Right text
 \newcommand{\drawBadge}[3][]{
+    \def\badge@labelColor{\shield@default@labelColor}
+    \def\badge@color{\shield@default@color}
     \def\badge@colorLeft{\shield@default@colorLeft}
     \def\badge@colorRight{\shield@default@colorRight}
     \def\badge@logo{}
+    \def\badge@logoColor{\shield@default@logoColor}
     %
     \setkeys{badge}{#1}
     %
@@ -68,18 +93,19 @@
         sidebyside gap=5pt,
         top=0pt, left=0pt, right=0pt, bottom=0pt,
         boxrule=0pt, rounded corners,
-        interior style={top color=\badge@colorLeft, bottom color=\badge@colorLeft!60!black},
-        segmentation style={top color=\badge@colorRight, bottom color=\badge@colorRight!60!black},
+        interior style={top color=\badge@labelColor, bottom color=\badge@labelColor!60!black},
+        segmentation style={top color=\badge@color, bottom color=\badge@color!60!black},
     ]{  % Left bloc
         \shield@default@font
         \ifx\badge@logo\@empty
-            \droptextshadow{default-left}{#2}
         \else
-            \droptextshadow{default-left}{\badge@logo\ #2}
+            \droptextnoshadow{\badge@logoColor}{\badge@logo}
         \fi
+        \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2}
+
     }{  % Right bloc
         \shield@default@font
-        \droptextshadow{\badge@colorRight}{#3}
+        \droptextshadow{\badge@color}{\badge@colorRight}{#3}
     }
     \hspace{-2ex}
     }

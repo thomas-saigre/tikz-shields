@@ -7,15 +7,20 @@ A badge can be included using the following command, in which the first argument
 \drawBadge{Any text}{you like}
 \end{tcblisting}
 
-The color of the right part can be customized, the default color being a rectangle of color \texttt{default-blue} \textcolor{default-blue}{\rule{1em}{1em}}.
+The color of the right part can be customized, the default color being a rectangle of color \showColor{default-blue}.
 
 
 \begin{tcblisting}{title={Change color}, lower separated=false}
-\drawBadge[colorRight=red]{Any text}{you like}
-\drawBadge[colorLeft=white]{Any text}{you like}
-\drawBadge[colorLeft=pink, colorRight=black]{Any text}{you like}
+\drawBadge[color=red]{Any text}{you like}
+\drawBadge[labelColor=white, colorLeft=red]{Any text}{you like}
+\drawBadge[labelColor=pink, color=black, colorRight=yellow]{Any text}{you like}
 \end{tcblisting}
 
+
+\begin{tcblisting}{title={Customize logo}, lower separated=false}
+\drawBadge[logo=\faFilm]{Movie}{5~\faStar}
+\drawBadge[logoColor=black, logo=\faHistory, labelColor=yellow]{Any text}{you like}
+\end{tcblisting}
 
 
 \section{Optional arguments}
@@ -24,18 +29,22 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
 
 \begin{center}
     \begin{tblr}{
-        colspec = {Q[c, cmd=\texttt]lc},
-        row{1} = {cmd =  \normalfont, bg = default-blue!30},
+        colspec = {Q[c, cmd=\texttt]lcc},
+        row{1} = {cmd=\bf, bg=default-blue, fg=white},
         vlines, hlines,
     }
-    Name & Description & Default value \\
-    colorLeft & Color of the left part of the badge & \texttt{default-left} \textcolor{default-left}{\rule{1em}{1em}} \\
-    colorRight & Color of the right part of the badge & \texttt{default-blue} \textcolor{default-blue}{\rule{1em}{1em}} \\
-    logo & Logo displayed before the text &
-
+    Name & Description & Default value & Pkg \\
+    labelColor & Background color of the left part of the badge & \showColor{default-left} & \checkmark \\
+    color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
+    colorLeft & Text color of the right part of the badge & \showColor{white} & \checkmark \\
+    colorRight & Text color of the right part of the badge & \showColor{white} & \checkmark \\
+    logo & Logo displayed before the text & & \\
+    logoColor & Color of the logo & \showColor{white} & \checkmark \\
     \end{tblr}
 \end{center}
 
+If the last column is ticked, then the option can be specified as default option for the whole library, that can be passed when loading it, for instance
+\mintinline[breaklines]{tex}{\usepackage[labelColor=red]{tikz-shield}}.
 
 
 
@@ -49,14 +58,12 @@ Some presets are available :
 \end{tcblisting}
 
 \begin{tcblisting}{title={Gitlab badge}, lower separated=false}
-\gitlabBadge[colorRight=orange]{inkscape/inkscape/}
+\gitlabBadge[color=orange]{inkscape/inkscape/}
 \end{tcblisting}
 
-\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
-
 \begin{tcblisting}{title={Custom forge badge}, lower separated=false}
-\forgeBadge[colorLeft=black, logo=\faCode]{code.videolan.org/videolan/vlc}
-\forgeBadge[colorLeft=green, logo=\checkmark]{code.videolan.org/videolan/vlc}
+\forgeBadge[labelColor=black, logo=\faCode]{code.videolan.org/videolan/vlc}
+\forgeBadge[labelColor=green, logo=\checkmark]{code.videolan.org/videolan/vlc}
 \end{tcblisting}
 
 In all cases, the generated badge is clickable and redirect to the repository provided.
