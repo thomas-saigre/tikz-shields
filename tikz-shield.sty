@@ -101,11 +101,16 @@
         \else
             \droptextnoshadow{\badge@logoColor}{\badge@logo}
         \fi
-        \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2}
+        \ifx#2\@empty
+        \else
+            \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}
+            %
+        \fi
 
     }{  % Right bloc
         \shield@default@font
-        \droptextshadow{\badge@color}{\badge@colorRight}{#3}
+        \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}
+        %
     }
     \hspace{-2ex}
     }
