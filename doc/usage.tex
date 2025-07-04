@@ -58,7 +58,7 @@ Some presets are available :
 \end{tcblisting}
 
 \begin{tcblisting}{title={Gitlab badge}, lower separated=false}
-\gitlabBadge[color=orange]{inkscape/inkscape/}
+\gitlabBadge[color=orange]{inkscape/inkscape}
 \end{tcblisting}
 
 \begin{tcblisting}{title={Custom forge badge}, lower separated=false}
@@ -67,6 +67,6 @@ Some presets are available :
 \end{tcblisting}
 
 In all cases, the generated badge is clickable and redirect to the repository provided.
-For \texttt{\\forgeBadge}, the icon can be customized, as well as the color.
+The icon can be customized, as well as the color.
 Note that anything can be used as a logo, even a text or a personalized command that you would have created (in previous example
-\mintinline[breaklines]{tex}{\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}).
+\mintinline[breaklines]{tex}{\def\checkmark{\tikz\fill[scale=0.4] (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}).
