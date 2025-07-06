@@ -6,5 +6,5 @@
 *.fls
 *.synctex.gz
 .vscode/*
-_minted-tikz-shield-doc/*
+_minted-tikz-shields-doc/*
 *.listing
