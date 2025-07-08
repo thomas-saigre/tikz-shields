@@ -3,7 +3,7 @@
 
 A badge can be included using the command \texttt{\textbackslash drawBadge}, in which the first argument specifies the left text (\textsf{Any text} in the example below), and the second argument is the text on the right (\textsf{you like}).
 
-\begin{tcblisting}{title={\tikzshield}, lower separated=false}
+\begin{tcblisting}{title={\tikzshields}, lower separated=false}
 \drawBadge{Any text}{you like}
 \end{tcblisting}
 
@@ -19,21 +19,28 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
         vlines, hlines,
     }
     Name & Description & Default value & Pkg \\
-    labelColor & Background color of the left part of the badge & \showColor{default-left} & \checkmark \\
     color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
     colorLeft & Text color of the right part of the badge & \showColor{white} & \checkmark \\
     colorRight & Text color of the right part of the badge & \showColor{white} & \checkmark \\
+    labelColor & Background color of the left part of the badge & \showColor{default-left} & \checkmark \\
     logo & Logo displayed before the text & & \\
     logoColor & Color of the logo & \showColor{white} & \checkmark \\
+    link & Clickable link & & \\
+    showlink & Draw the \textsf{hyperref} border around the badge & \texttt{false} & \\
     \end{tblr}
 \end{center}
 
 If the last column is ticked, then the option can be specified as default option for the whole library, that can be passed when loading it, for instance
 \mintinline[breaklines]{tex}{\usepackage[labelColor=red]{tikz-shields}}.
 
+Note that anything can be used as a logo, even a text or a personalized command that you would have created (in an example described in Section \ref{sec:special-badges}
+\mintinline[breaklines]{tex}{\def\checkmark{\tikz\fill[scale=0.4] (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}).
+
+The Section \ref{sec:examples} presents some examples of badges that can be generated, while Section \ref{sec:special-badges} show some preset badges.
 
 
 \section{Examples}
+\label{sec:examples}
 
 The color of the right part can be customized, the default color being a rectangle of color \showColor{default-blue}.
 
@@ -48,17 +55,26 @@ The color of the right part can be customized, the default color being a rectang
 \begin{tcblisting}{title={Customize logo}, lower separated=false}
 \drawBadge[logo=\faFilm]{Movie}{5~\faStar}
 \drawBadge[logoColor=black, logo=\faHistory, labelColor=yellow]{Any text}{you like}
-\drawBadge[logo=\faBatteryFull, logoSize=auto]{Any text}{you like}
 \end{tcblisting}
 
 
+\begin{tcblisting}{title={Clickable badges}, lower separated=false}
+\drawBadge[logo=\faWikipediaW, link=https://www.wikipedia.org]{}{Wikipedia}
+\drawBadge[logo=\faWikipediaW, showlink=true, link=https://www.wikipedia.org]{}{Wikipedia}
+\end{tcblisting}
+
+Note, for document where the links are hidden by default with \textsf{hyperref} (as the present document), this option won't have any effect.
+
 \section{Special badges}
+\label{sec:special-badges}
 
 
-Some presets are available :
+Some presets are available.
+For each one of them, the default options can be used to overwrite default values (as logo for instance).
 
 \begin{tcblisting}{title={Github badge}, lower separated=false}
 \githubBadge{thomas-saigre/tikz-shields}
+\githubBadge[logo=\faGit]{thomas-saigre/tikz-shields}
 \end{tcblisting}
 
 \begin{tcblisting}{title={Gitlab badge}, lower separated=false}
@@ -72,5 +88,3 @@ Some presets are available :
 
 In all cases, the generated badge is clickable and redirect to the repository provided.
 The icon can be customized, as well as the color.
-Note that anything can be used as a logo, even a text or a personalized command that you would have created (in previous example
-\mintinline[breaklines]{tex}{\def\checkmark{\tikz\fill[scale=0.4] (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}).

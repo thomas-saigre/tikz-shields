@@ -45,6 +45,8 @@
 \define@key{badge}{colorRight}{\def\badge@colorRight{#1}}
 \define@key{badge}{logo}{\def\badge@logo{#1}}
 \define@key{badge}{logoColor}{\def\badge@logoColor{#1}}
+\define@key{badge}{link}{\def\badge@link{#1}}
+\define@boolkey{badge}{showlink}{\def\badge@showlink{#1}}
 
 \ProcessOptionsX
 
@@ -77,7 +79,7 @@
 % #1 Default options
 % #2 Left text
 % #3 Right text
-\newcommand{\drawBadge}[3][]{
+\newcommand{\drawBadgeAux}[3][]{%
     \def\badge@labelColor{\shield@default@labelColor}
     \def\badge@color{\shield@default@color}
     \def\badge@colorLeft{\shield@default@colorLeft}
@@ -119,26 +121,36 @@
 }
 
 
+\newcommand{\drawBadge}[3][]{%
+    %
+    \def\badge@link{}
+    \def\badge@showlink{false}
+    \setkeys{badge}{#1}
+    \ifx\badge@link\@empty
+        \drawBadgeAux[#1]{#2}{#3}%
+    \else
+        {%
+        \ifKV@badge@showlink
+        \else
+            \hypersetup{hidelinks}%
+        \fi
+        \mbox{\href{\badge@link}{\mbox{\hspace{0.5ex}}\drawBadgeAux[#1]{#2}{#3}}}%
+        }%
+    \fi
+}
+
+
 \newcommand{\githubBadge}[2][]
 {
-    {%
-    \hypersetup{hidelinks}%
-    \mbox{\href{https://github.com/#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1, logo=\faGithub]{}{github.com/#2}}\hspace{-1ex}}%
-    }
+    \drawBadge[link=https://github.com/#2, logo=\faGithub, #1]{}{github.com/#2}
 }
 
 \newcommand{\gitlabBadge}[2][]
 {
-    {%
-    \hypersetup{hidelinks}%
-    \mbox{\href{https://gitlab.com/#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1, logo=\faGitlab]{}{gitlab.com/#2}}\hspace{-1ex}}%
-    }
+    \drawBadge[link=https://gitlab.com/#2, logo=\faGitlab, #1]{}{gitlab.com/#2}
 }
 
 \newcommand{\forgeBadge}[2][]
 {
-    {%
-    \hypersetup{hidelinks}%
-    \mbox{\href{https://#2}{\mbox{\hspace{-0.5ex}}\drawBadge[#1]{}{gitlab.com/#2}}\hspace{-1ex}}%
-    }
+    \drawBadge[link=https://#2, #1]{}{#2}
 }
