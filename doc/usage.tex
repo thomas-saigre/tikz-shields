@@ -14,9 +14,10 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
 
 \begin{center}
     \begin{tblr}{
-        colspec = {Q[c, cmd=\texttt]lcc},
+        colspec = {Q[c,m, cmd=\texttt,0.18\textwidth]X[0.5\textwidth,m]X[0.17\textwidth,c,m]X[0.04\textwidth,c,m]},
         row{1} = {cmd=\bf, bg=default-blue, fg=white},
         vlines, hlines,
+        width = \textwidth,
     }
     Name & Description & Default value & Pkg \\
     color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
@@ -39,6 +40,11 @@ Note that anything can be used as a logo, even a text or a personalized command 
 The Section \ref{sec:examples} presents some examples of badges that can be generated, while Section \ref{sec:special-badges} show some preset badges.
 
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Examples}
 \label{sec:examples}
 
@@ -55,7 +61,13 @@ The color of the right part can be customized, the default color being a rectang
 \begin{tcblisting}{title={Customize logo}, lower separated=false}
 \drawBadge[logo=\faFilm]{Movie}{5~\faStar}
 \drawBadge[logoColor=black, logo=\faHistory, labelColor=yellow]{Any text}{you like}
+
+\def\ctan{\includegraphics[height=1em]{doc/img/ctan-white.pdf}}
+\drawBadge[logo=\ctan]{\CTAN}{tikz-shields}
 \end{tcblisting}
+
+Custom logos can be employed, as in the previous example where an image is loaded to use the logo%
+\footnote{Logo of \CTAN is a courtesy of \href{https://gitlab.com/comprehensive-tex-archive-network/ctan-site/-/blob/master/src/artwork/logo/ctan-book-animation-globe.xcf}{\CTAN}.}.
 
 
 \begin{tcblisting}{title={Clickable badges}, lower separated=false}
@@ -65,12 +77,19 @@ The color of the right part can be customized, the default color being a rectang
 
 Note, for document where the links are hidden by default with \textsf{hyperref} (as the present document), this option won't have any effect.
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Special badges}
 \label{sec:special-badges}
 
 
 Some presets are available.
 For each one of them, the default options can be used to overwrite default values (as logo for instance).
+
+\subsection{Git repository}
 
 \begin{tcblisting}{title={Github badge}, lower separated=false}
 \githubBadge{thomas-saigre/tikz-shields}
@@ -88,3 +107,17 @@ For each one of them, the default options can be used to overwrite default value
 
 In all cases, the generated badge is clickable and redirect to the repository provided.
 The icon can be customized, as well as the color.
+
+\subsection{License}
+
+\begin{tcblisting}{title={License badges}, lower separated=false}
+\licenseBadge[link=https://github.com/thomas-saigre/tikz-shields?tab=GPL-3.0-1-ov-file]{GPL-3.0-1}
+\licenseBadge[][LICENSE]{cc0}
+\licenseBadge[link=]{WTFPL}
+\end{tcblisting}
+
+By default, a clickable badge directing to \texttt{https://creativecommons.org/\{name\_of\_the\_license\}} is done.
+Note that this webpage may not exist, but the link can either be manually changed, or an empty link can be provided.
+
+The second optional argument allows to personalize the left text, \texttt{license} by default.
+
