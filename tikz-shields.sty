@@ -89,14 +89,14 @@
     %
     \setkeys{badge}{#1}
     %
-    \mbox{
-    \hspace{-7.5ex}
     \tcbsidebyside[
         bicolor, sidebyside,
         sidebyside adapt=both,
         sidebyside gap=5pt,
         top=0pt, left=0pt, right=0pt, bottom=0pt,
+        boxsep=0pt,
         boxrule=0pt, rounded corners,
+        nobeforeafter,
         interior style={top color=\badge@labelColor, bottom color=\badge@labelColor!60!black},
         segmentation style={top color=\badge@color, bottom color=\badge@color!60!black},
     ]{  % Left bloc
@@ -116,8 +116,6 @@
         \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}
         %
     }
-    \hspace{-2ex}
-    }
 }
 
 
@@ -134,7 +132,7 @@
         \else
             \hypersetup{hidelinks}%
         \fi
-        \mbox{\href{\badge@link}{\mbox{\hspace{0.5ex}}\drawBadgeAux[#1]{#2}{#3}}}%
+        \href{\badge@link}{\drawBadgeAux[#1]{#2}{#3}}%
         }%
     \fi
 }
