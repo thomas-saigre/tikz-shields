@@ -98,49 +98,48 @@
 % #2 Left text
 % #3 Right text
 \newcommand{\drawBadgeAux}[3][]{%
-    \def\badge@labelColor{\shield@default@labelColor}
-    \def\badge@color{\shield@default@color}
-    \def\badge@colorLeft{\shield@default@colorLeft}
-    \def\badge@colorRight{\shield@default@colorRight}
-    \def\badge@logo{}
-    \def\badge@logoColor{\shield@default@logoColor}
-    \def\badge@style{\shield@default@style}
+    \def\badge@labelColor{\shield@default@labelColor}%
+    \def\badge@color{\shield@default@color}%
+    \def\badge@colorLeft{\shield@default@colorLeft}%
+    \def\badge@colorRight{\shield@default@colorRight}%
+    \def\badge@logo{}%
+    \def\badge@logoColor{\shield@default@logoColor}%
+    \def\badge@style{\shield@default@style}%
     %
-    \setkeys{badge}{#1}
+    \setkeys{badge}{#1}%
     %
     \ifthenelse{\equal{\badge@style}{social}}{%
         % social badge : special handling
         social
     }{%
-        \def\opt@rounded{rounded corners}
-        \def\opt@margin{0pt}
-        \def\opt@gap{5pt}
-        \def\opt@bottomColor{!60!black}
-        \def\opt@topColor{}
+        \def\opt@rounded{rounded corners}%
+        \def\opt@margin{0pt}%
+        \def\opt@gap{5pt}%
+        \def\opt@bottomColor{!60!black}%
+        \def\opt@topColor{}%
         \ifthenelse{\equal{\badge@style}{flat}}{%
         }{%
-        }
+        }%
         \ifthenelse{\equal{\badge@style}{flat-square}}{%
-            \def\opt@rounded{sharp corners}
-            \def\opt@bottomColor{}
+            \def\opt@rounded{sharp corners}%
+            \def\opt@bottomColor{}%
         }{%
-        }
+        }%
         %
         \ifthenelse{\equal{\badge@style}{plastic}}{%
-            \def\opt@topColor{!70!white}
+            \def\opt@topColor{!70!white}%
         }{%
-        }
+        }%
         %
         \ifthenelse{\equal{\badge@style}{for-the-badge}}{%
-            \def\opt@rounded{sharp corners}
-            \def\opt@margin{3pt}
-            \def\opt@gap{10pt}
-            \def\opt@bottomColor{}
+            \def\opt@rounded{sharp corners}%
+            \def\opt@margin{3pt}%
+            \def\opt@gap{10pt}%
+            \def\opt@bottomColor{}%
         }{%
-        }
-        %
-        \mbox{
-        \hspace{-7.5ex}
+        }%
+        %%
+        \mbox{%
         \tcbsidebyside[
             bicolor, sidebyside,
             sidebyside adapt=both,
@@ -150,44 +149,44 @@
             interior style={top color=\badge@labelColor\opt@topColor, bottom color=\badge@labelColor\opt@bottomColor},
             segmentation style={top color=\badge@color\opt@topColor, bottom color=\badge@color\opt@bottomColor},
         ]{  % Left bloc
-            \shield@default@font
-            \ifx\badge@logo\@empty
-            \else
-                \droptextnoshadow{\badge@logoColor}{\badge@logo}
-            \fi
-            \ifx#2\@empty
-            \else
-                \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}
+            \shield@default@font%
+            \ifx\badge@logo\@empty%
+            \else%
+                \droptextnoshadow{\badge@logoColor}{\badge@logo}%
+            \fi%
+            \ifx#2\@empty%
+            \else%
+                \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}%
                 %
-            \fi
+            \fi%
 
         }{  % Right bloc
             \shield@default@font
-            \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}
+            \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}%
             %
+        }%
         }
-        \hspace{-2ex}
-        }
+        \hspace{-1.5ex}%
     }
 }
 
 
 \newcommand{\drawBadge}[3][]{%
     %
-    \def\badge@link{}
-    \def\badge@showlink{false}
-    \setkeys{badge}{#1}
-    \ifx\badge@link\@empty
+    \def\badge@link{}%
+    \def\badge@showlink{false}%
+    \setkeys{badge}{#1}%
+    \ifx\badge@link\@empty%
         \drawBadgeAux[#1]{#2}{#3}%
-    \else
-        {%
-        \ifKV@badge@showlink
-        \else
+    \else%
+    {%
+        \ifKV@badge@showlink%
+        \else%
             \hypersetup{hidelinks}%
-        \fi
-        \mbox{\href{\badge@link}{\mbox{\hspace{0.5ex}}\drawBadgeAux[#1]{#2}{#3}}}%
+        \fi%
+        \href{\badge@link}{\mbox{\drawBadgeAux[#1]{#2}{#3}}}%
         }%
-    \fi
+    \fi%
 }
 
 
