@@ -15,7 +15,7 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
 \begin{center}
     \begin{tblr}{
         colspec = {Q[c,m, cmd=\texttt,0.18\textwidth]X[0.5\textwidth,m]X[0.17\textwidth,c,m]X[0.04\textwidth,c,m]},
-        row{1} = {cmd=\bf, bg=default-blue, fg=white},
+        row{1} = {cmd=\textbf, bg=default-blue, fg=white},
         vlines, hlines,
         width = \textwidth,
     }
@@ -28,6 +28,7 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
     logoColor & Color of the logo & \showColor{white} & \checkmark \\
     link & Clickable link & & \\
     showlink & Draw the \textsf{hyperref} border around the badge & \texttt{false} & \\
+    style & Style of the badge. Possible values are: \texttt{flat}, \texttt{flat-square}, \texttt{plastic}, \texttt{for-the-badge}, \texttt{social} & \texttt{flat} & \checkmark \\
     \end{tblr}
 \end{center}
 

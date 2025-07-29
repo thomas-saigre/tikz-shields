@@ -18,6 +18,8 @@
 \RequirePackage{hyperref}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{xkeyval}
+\RequirePackage{ifthen}
+
 
 \DeclareOptionX{font}[\sf]{\def\shield@default@font{#1}}
 \DeclareOptionX{labelColor}[default-left]{\def\shield@default@labelColor{#1}}
@@ -25,6 +27,19 @@
 \DeclareOptionX{colorLeft}[white]{\def\shield@default@colorLeft{#1}}
 \DeclareOptionX{colorRight}[white]{\def\shield@default@colorRight{#1}}
 \DeclareOptionX{logoColor}[white]{\def\shield@default@logoColor{#1}}
+\DeclareOptionX{style}[flat]{%
+    \def\shield@tmp@style{#1}%
+    \def\shield@default@style{wrong}
+    \def\shield@default@error{wrong}
+    \@for\shield@opt:=flat,flat-square,plastic,for-the-badge,social\do{%
+        \ifx\shield@tmp@style\shield@opt
+            \def\shield@default@style{#1}%
+        \fi
+    }%
+    \ifx\shield@default@style\shield@default@error
+        \PackageError{tikz-shields}{Invalid style option '#1'}{Valid options are: flat, flatsquare, plastic, for-the-badge, social.}
+    \fi
+}
 
 \definecolor{default-blue}{HTML}{1283c4}
 \definecolor{default-left}{HTML}{5e5e5e}
@@ -37,6 +52,7 @@
 \ExecuteOptionsX{colorLeft}
 \ExecuteOptionsX{colorRight}
 \ExecuteOptionsX{logoColor}
+\ExecuteOptionsX{style}
 
 
 \define@key{badge}{labelColor}{\def\badge@labelColor{#1}}
@@ -47,6 +63,8 @@
 \define@key{badge}{logoColor}{\def\badge@logoColor{#1}}
 \define@key{badge}{link}{\def\badge@link{#1}}
 \define@boolkey{badge}{showlink}{\def\badge@showlink{#1}}
+\define@choicekey{badge}{style}{flat,flat-square,plastic,for-the-badge,social}{\def\badge@style{#1}}
+
 
 \ProcessOptionsX
 
@@ -86,35 +104,72 @@
     \def\badge@colorRight{\shield@default@colorRight}
     \def\badge@logo{}
     \def\badge@logoColor{\shield@default@logoColor}
+    \def\badge@style{\shield@default@style}
     %
     \setkeys{badge}{#1}
     %
-    \tcbsidebyside[
-        bicolor, sidebyside,
-        sidebyside adapt=both,
-        sidebyside gap=5pt,
-        top=0pt, left=0pt, right=0pt, bottom=0pt,
-        boxsep=0pt,
-        boxrule=0pt, rounded corners,
-        nobeforeafter,
-        interior style={top color=\badge@labelColor, bottom color=\badge@labelColor!60!black},
-        segmentation style={top color=\badge@color, bottom color=\badge@color!60!black},
-    ]{  % Left bloc
-        \shield@default@font
-        \ifx\badge@logo\@empty
-        \else
-            \droptextnoshadow{\badge@logoColor}{\badge@logo}
-        \fi
-        \ifx#2\@empty
-        \else
-            \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}
-            %
-        \fi
-
-    }{  % Right bloc
-        \shield@default@font
-        \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}
+    \ifthenelse{\equal{\badge@style}{social}}{%
+        % social badge : special handling
+        social
+    }{%
+        \def\opt@rounded{rounded corners}
+        \def\opt@margin{0pt}
+        \def\opt@gap{5pt}
+        \def\opt@bottomColor{!60!black}
+        \def\opt@topColor{}
+        \ifthenelse{\equal{\badge@style}{flat}}{%
+        }{%
+        }
+        \ifthenelse{\equal{\badge@style}{flat-square}}{%
+            \def\opt@rounded{sharp corners}
+            \def\opt@bottomColor{}
+        }{%
+        }
         %
+        \ifthenelse{\equal{\badge@style}{plastic}}{%
+            \def\opt@topColor{!70!white}
+        }{%
+        }
+        %
+        \ifthenelse{\equal{\badge@style}{for-the-badge}}{%
+            \def\opt@rounded{sharp corners}
+            \def\opt@margin{3pt}
+            \def\opt@gap{10pt}
+            \def\opt@bottomColor{}
+        }{%
+        }
+        %
+        \mbox{
+        \hspace{-7.5ex}
+        \tcbsidebyside[
+            bicolor, sidebyside,
+            sidebyside adapt=both,
+            sidebyside gap=\opt@gap,
+            top=\opt@margin, left=\opt@margin, right=\opt@margin, bottom=\opt@margin,
+            boxsep=0pt,
+            boxrule=0pt, \opt@rounded,
+            nobeforeafter,
+            interior style={top color=\badge@labelColor\opt@topColor, bottom color=\badge@labelColor\opt@bottomColor},
+            segmentation style={top color=\badge@color\opt@topColor, bottom color=\badge@color\opt@bottomColor},
+        ]{  % Left bloc
+            \shield@default@font
+            \ifx\badge@logo\@empty
+            \else
+                \droptextnoshadow{\badge@logoColor}{\badge@logo}
+            \fi
+            \ifx#2\@empty
+            \else
+                \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}
+                %
+            \fi
+
+        }{  % Right bloc
+            \shield@default@font
+            \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}
+            %
+        }
+        \hspace{-2ex}
+        }
     }
 }
 
