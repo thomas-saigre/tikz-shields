@@ -20,6 +20,7 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
         width = \textwidth,
     }
     Name & Description & Default value & Pkg \\
+    baseline & Baseline of the badge & \texttt{0mm} & \\
     color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
     colorLeft & Text color of the right part of the badge & \showColor{white} & \checkmark \\
     colorRight & Text color of the right part of the badge & \showColor{white} & \checkmark \\
@@ -87,6 +88,22 @@ The style of the badge can also be chosen:
 \drawBadge[style=plastic]{Any text}{you like}
 \drawBadge[style=for-the-badge]{Any text}{you like}
 \drawBadge[style=social]{Any text}{you like}
+\end{tcblisting}
+
+As you can see in previous example, the badges are not aligned vertically.
+At this point, only \drawBadge[style=social]{social}{badges} are automatically aligned with surrounding text (option \texttt{tcbox raise base} which does not work with \texttt{\textbackslash tcbsidebyside}).
+
+The option \texttt{basline} allows to manually set a vertical shift of the badges, but depend on the text present in the badge, by default it is null.
+
+\begin{tcblisting}{
+    title={Baseline
+        \footnote{The implementation of the macro \texttt{\textbackslash showbaseline} is taken from \drawBadge[link=https://tex.stackexchange.com/a/432196/243474, logo=\faStackExchange, baseline=1.8mm]{tex.stackexchange.com}{\texttt{432196/243474}}.}},
+    lower separated=false}
+\showbaseline{Hello, I'm
+\drawBadge[baseline=1.8mm]{Arthur}{Pendragon},
+and not
+\drawBadge[baseline=1mm]{Louis}{XIV}.
+}
 \end{tcblisting}
 
 

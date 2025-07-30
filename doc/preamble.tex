@@ -62,6 +62,13 @@
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 \def\ctan{\includegraphics[height=1em]{doc/img/ctan-white.pdf}}
 
+\newsavebox\textbox
+\newcommand\showbaseline[1]{%
+  \leavevmode
+  \sbox\textbox{#1}%
+  \rlap{\rule{\wd\textbox}{.1pt}}%
+  \usebox\textbox
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

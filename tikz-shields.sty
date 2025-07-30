@@ -67,7 +67,7 @@
 \define@key{badge}{link}{\def\badge@link{#1}}
 \define@boolkey{badge}{showlink}{\def\badge@showlink{#1}}
 \define@choicekey{badge}{style}{flat,flat-square,plastic,for-the-badge,social}{\def\badge@style{#1}}
-
+\define@key{badge}{baseline}{\def\badge@baseline{#1}}
 
 \ProcessOptionsX
 
@@ -149,6 +149,7 @@
     \def\badge@logo{}%
     \def\badge@logoColor{\shield@default@logoColor}%
     \def\badge@style{\shield@default@style}%
+    \def\badge@baseline{0mm}%
     %
     \setkeys{badge}{#1}%
     %
@@ -194,14 +195,14 @@
             sidebyside gap=\opt@gap,
             top=\opt@margin, left=\opt@margin, right=\opt@margin, bottom=\opt@margin,
             boxrule=0pt, \opt@rounded,
-            % baseline=\opt@baseline,
+            baseline=\badge@baseline,
             interior style={top color=\badge@labelColor\opt@topColor, bottom color=\badge@labelColor\opt@bottomColor},
             segmentation style={top color=\badge@color\opt@topColor, bottom color=\badge@color\opt@bottomColor},
         ]{  % Left bloc
             \shield@default@font%
             \ifx\badge@logo\@empty%
             \else%
-                \droptextnoshadow{\badge@logoColor}{\badge@logo}%
+                \droptextnoshadow{\badge@logoColor}{\badge@logo}~%
             \fi%
             \ifx#2\@empty%
             \else%
