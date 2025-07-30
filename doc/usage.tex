@@ -1,7 +1,17 @@
 %!TeX root=../tikz-shields-doc.tex
 \section{Basic usage}
 
-A badge can be included using the command \texttt{\textbackslash drawBadge}, in which the first argument specifies the left text (\textsf{Any text} in the example below), and the second argument is the text on the right (\textsf{you like}).
+\paragraph{Syntax:}
+\begin{verbatim}
+\drawBadge[<options>]{<left text>}{<right text>}
+\end{verbatim}
+
+\paragraph{Arguments:}
+\begin{itemize}
+    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see next section.
+    \item \texttt{\{<left text\}} (required): Text displayed in the left part of the badge.
+    \item \texttt{\{<right text\}} (required): Text displayed in the right part of the badge.
+\end{itemize}
 
 \begin{tcblisting}{title={\tikzshields}, lower separated=false}
 \drawBadge{Any text}{you like}
@@ -9,6 +19,7 @@ A badge can be included using the command \texttt{\textbackslash drawBadge}, in 
 
 
 \section{Optional arguments}
+\label{sec:args}
 
 Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawBadge} (as well as the other ones described in this document):
 
@@ -36,10 +47,12 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
 If the last column is ticked, then the option can be specified as default option for the whole library, that can be passed when loading it, for instance
 \mintinline[breaklines]{tex}{\usepackage[labelColor=red]{tikz-shields}}.
 
-Note that anything can be used as a logo, even a text or a personalized command that you would have created (in an example described in Section \ref{sec:special-badges}
+Note that anything can be used as a logo, even a text or a personalized command that you would have created (in an example described in Section~\ref{sec:special-badges}
 \mintinline[breaklines]{tex}{\def\checkmark{\tikz\fill[scale=0.4] (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}}).
 
-The Section \ref{sec:examples} presents some examples of badges that can be generated, while Section \ref{sec:special-badges} show some preset badges.
+\vspace{\baselineskip}
+
+The Section~\ref{sec:examples} presents some examples of badges that can be generated, while Section~\ref{sec:special-badges} shows some preset badges.
 
 
 
@@ -96,7 +109,7 @@ At this point, only \drawBadge[style=social]{social}{badges} are automatically a
 The option \texttt{basline} allows to manually set a vertical shift of the badges, but depend on the text present in the badge, by default it is null.
 
 \begin{tcblisting}{
-    title={Baseline
+    title={Baseline%
         \footnote{The implementation of the macro \texttt{\textbackslash showbaseline} is taken from \drawBadge[link=https://tex.stackexchange.com/a/432196/243474, logo=\faStackExchange, baseline=1.8mm]{tex.stackexchange.com}{\texttt{432196/243474}}.}},
     lower separated=false}
 \showbaseline{Hello, I'm
@@ -119,6 +132,26 @@ For each one of them, the default options can be used to overwrite default value
 
 \subsection{Git repository}
 
+The \texttt{\textbackslash githubBadge} command creates a badge showing path to a given repository.
+By default, the badge is clickable to \texttt{https://github.com/<repo path>} is done.
+
+
+\paragraph{Syntax:}
+\begin{verbatim}
+\githubBadge[<options>]{<repo path>}
+\end{verbatim}
+
+\paragraph{Arguments:}
+\begin{itemize}
+    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \texttt{\{<repo path>\}} (required): Path to the repository.
+\end{itemize}
+
+The prototype is the same for \texttt{\textbackslash gitlabBadge} and \texttt{\textbackslash forgeBadge}.
+In the first case, the link redirects to \texttt{https://gitlab.com/<repo path>},
+and in the second to \texttt{https://<repo path>}.
+
+
 \begin{tcblisting}{title={Github badge}, lower separated=false}
 \githubBadge{thomas-saigre/tikz-shields}
 \githubBadge[logo=\faGit]{thomas-saigre/tikz-shields}
@@ -138,14 +171,27 @@ The icon can be customized, as well as the color.
 
 \subsection{License}
 
+
+The \texttt{\textbackslash licenseBadge} command creates a badge displaying a license name, optionally with custom options and left-side text.
+By default, a clickable badge directing to \texttt{https://creativecommons.org/<license name>} is done.
+Note that this webpage may not exist, but the link can either be manually changed, or an empty link can be provided.
+
+\paragraph{Syntax:}
+\begin{verbatim}
+\licenseBadge[<options>][<left text>]{<license name>}
+\end{verbatim}
+
+\paragraph{Arguments:}
+\begin{itemize}
+    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \texttt{[<left text>]} (optional): Text displayed on the left side of the badge (defaults to \texttt{license} in lowercase).
+    \item \texttt{\{<license name>\}} (required): Name of the license to display.
+\end{itemize}
+
+
 \begin{tcblisting}{title={License badges}, lower separated=false}
 \licenseBadge[link=https://github.com/thomas-saigre/tikz-shields/blob/main/LICENSE]{GPL-3.0-1}
 \licenseBadge[][LICENSE]{cc0}
 \licenseBadge[link=]{WTFPL}
 \end{tcblisting}
-
-By default, a clickable badge directing to \texttt{https://creativecommons.org/\{name\_of\_the\_license\}} is done.
-Note that this webpage may not exist, but the link can either be manually changed, or an empty link can be provided.
-
-The second optional argument allows to personalize the left text, \texttt{license} by default.
 
