@@ -155,13 +155,14 @@
     \ifthenelse{\equal{\badge@style}{social}}{%
         % social badge : special handling
         \shield@default@font%
-        \socialleft{#2\vphantom{#3}}\hspace{1ex}\socialright{#3\vphantom{#2}}%
+        \mbox{\socialleft{#2\vphantom{#3}}\hspace{1ex}\socialright{#3\vphantom{#2}}}%
     }{%
         \def\opt@rounded{rounded corners}%
         \def\opt@margin{0pt}%
         \def\opt@gap{5pt}%
         \def\opt@bottomColor{!60!black}%
         \def\opt@topColor{}%
+        % \def\opt@baseline{2mm}%
         \ifthenelse{\equal{\badge@style}{flat}}{%
         }{%
         }%
@@ -181,6 +182,7 @@
             \def\opt@margin{3pt}%
             \def\opt@gap{10pt}%
             \def\opt@bottomColor{}%
+            % \def\opt@baseline{3mm}%
         }{%
         }%
         %%
@@ -192,6 +194,7 @@
             sidebyside gap=\opt@gap,
             top=\opt@margin, left=\opt@margin, right=\opt@margin, bottom=\opt@margin,
             boxrule=0pt, \opt@rounded,
+            % baseline=\opt@baseline,
             interior style={top color=\badge@labelColor\opt@topColor, bottom color=\badge@labelColor\opt@bottomColor},
             segmentation style={top color=\badge@color\opt@topColor, bottom color=\badge@color\opt@bottomColor},
         ]{  % Left bloc
@@ -205,7 +208,6 @@
                 \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}%
                 %
             \fi%
-
         }{  % Right bloc
             \shield@default@font
             \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}%
