@@ -10,7 +10,7 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/thomas-saigre/tikz-shields)
 
 
-Badges as in shields.io, but in LaTeX
+Badges as in shields.io, but in LaTeX.
 
 ## Usage
 
@@ -30,3 +30,9 @@ Badges as in shields.io, but in LaTeX
 ![Example badge](./doc/img/example.svg)
 
 For more details, please consult the package documentation.
+
+## License
+
+Copyright @thomas-saigre, maintainer of the package.
+
+This package is published under the GPL-3.0 license, permitting use, modification, and distribution under the terms of the [GNU General Public License version 3.0](LICENSE).
