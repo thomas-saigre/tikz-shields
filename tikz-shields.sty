@@ -45,6 +45,9 @@
 \definecolor{default-left}{HTML}{5e5e5e}
 \definecolor{default-grey}{HTML}{565656}
 \definecolor{default-green}{HTML}{77d810}
+\definecolor{default-social-frame}{HTML}{d5d5d5}
+\definecolor{default-social-top}{HTML}{fcfcfc}
+\definecolor{default-social-bottom}{HTML}{e5e5e5}
 
 \ExecuteOptionsX{font}
 \ExecuteOptionsX{labelColor}
@@ -67,6 +70,47 @@
 
 
 \ProcessOptionsX
+
+
+
+\newtcbox{\socialleft}{
+  enhanced,
+  nobeforeafter,
+  tcbox raise base,
+  boxrule=1pt,
+  top=0pt, left=0pt, right=0pt, bottom=0pt,
+  colframe=default-social-frame,
+  coltext=black,
+  interior style={top color=default-social-top, bottom color=default-social-bottom},
+  overlay={}
+}
+
+\newtcbox{\socialright}{
+  enhanced,
+  nobeforeafter,
+  tcbox raise base,
+  boxrule=0pt,
+  top=0pt, left=0pt, right=0pt, bottom=0pt,
+  colframe=default-social-frame,
+  coltext=black,
+  interior style={top color=default-social-top, bottom color=default-social-bottom},
+  overlay unbroken and first={
+    \shade[top color=default-social-top, bottom color=default-social-bottom]
+      ([xshift=0pt, yshift=3pt]frame.west) --
+      ([xshift=-3pt,yshift=0pt]frame.west) --
+      ([xshift=0pt, yshift=-3pt]frame.west) -- cycle;
+    \draw[color=default-social-frame, line width=1pt]
+        ([xshift=0pt, yshift=3pt]frame.west) --
+        ([xshift=-3pt,yshift=0pt]frame.west) --
+        ([xshift=0pt, yshift=-3pt]frame.west) [rounded corners] --
+        (frame.south west) --
+        (frame.south east) --
+        (frame.north east) --
+        (frame.north west) [sharp corners] --
+        cycle;
+    },
+}
+
 
 % Creation of a text with dropped shadow
 % #1 Color of background
@@ -110,7 +154,8 @@
     %
     \ifthenelse{\equal{\badge@style}{social}}{%
         % social badge : special handling
-        social
+        \shield@default@font%
+        \socialleft{#2\vphantom{#3}}\hspace{1ex}\socialright{#3\vphantom{#2}}%
     }{%
         \def\opt@rounded{rounded corners}%
         \def\opt@margin{0pt}%
@@ -143,6 +188,7 @@
         \tcbsidebyside[
             bicolor, sidebyside,
             sidebyside adapt=both,
+            nobeforeafter, nobeforeafter,
             sidebyside gap=\opt@gap,
             top=\opt@margin, left=\opt@margin, right=\opt@margin, bottom=\opt@margin,
             boxrule=0pt, \opt@rounded,
