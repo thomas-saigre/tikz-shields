@@ -259,3 +259,15 @@
 {
     \drawBadge[link=https://creativecommons.org/#3, logo=\faBalanceScale, #1]{#2}{#3}
 }
+
+\newcommand{\doiBadge}[2][]{
+    \drawBadge[link=https://doi.org/#2, #1]{DOI}{#2}
+}
+
+\newcommand{\arxivBadge}[2][]{
+    \drawBadge[link=https://arxiv.org/abs/#2, #1]{arXiv}{#2}
+}
+
+\newcommand{\halBadge}[2][]{
+    \drawBadge[link=https://hal.science/hal-#2, #1]{HAL}{#2}
+}
