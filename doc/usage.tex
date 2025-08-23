@@ -139,12 +139,13 @@ By default, the badge is clickable to \texttt{https://github.com/<repo path>} is
 
 \paragraph{Syntax:}
 \begin{verbatim}
-\githubBadge[<options>]{<repo path>}
+\githubBadge[<options>][<left text>]{<repo path>}
 \end{verbatim}
 
 \paragraph{Arguments:}
 \begin{itemize}
     \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \texttt{[<left text>]} (optional): Text displayed on the left side of the badge, by default \texttt{github} (or \texttt{gitlab} or empty for the other commands).
     \item \texttt{\{<repo path>\}} (required): Path to the repository.
 \end{itemize}
 
@@ -155,16 +156,17 @@ and in the second to \texttt{https://<repo path>}.
 
 \begin{tcblisting}{title={Github badge}, lower separated=false}
 \githubBadge{thomas-saigre/tikz-shields}
-\githubBadge[logo=\faGit]{thomas-saigre/tikz-shields}
+\githubBadge[logo=\faGit][]{thomas-saigre/tikz-shields}
 \end{tcblisting}
 
 \begin{tcblisting}{title={Gitlab badge}, lower separated=false}
 \gitlabBadge[color=orange]{inkscape/inkscape}
+\gitlabBadge[color=orange][]{inkscape/inkscape}
 \end{tcblisting}
 
 \begin{tcblisting}{title={Custom forge badge}, lower separated=false}
 \forgeBadge[labelColor=black, logo=\faCode]{code.videolan.org/videolan/vlc}
-\forgeBadge[labelColor=green, logo=\checkmark]{code.videolan.org/videolan/vlc}
+\forgeBadge[logo=\checkmark][VLC]{code.videolan.org/videolan/vlc}
 \end{tcblisting}
 
 In all cases, the generated badge is clickable and redirect to the repository provided.
@@ -196,7 +198,23 @@ Note that this webpage may not exist, but the link can either be manually change
 \licenseBadge[link=]{WTFPL}
 \end{tcblisting}
 
+
 \subsection{Publication badges}
+
+The commands \texttt{\textbackslash doiBadges} (resp. \texttt{\textbackslash arxivBadges} and \texttt{\textbackslash halBadge}) create badges where the identification that redirect to the publication webpage (resp. \texttt{https://doi.ord/<id>}, \texttt{https://arxiv.org/abs/<id>} and \texttt{https://hal.science/hal-<id>}).
+
+\paragraph{Syntax:}
+\begin{verbatim}
+\doiBadge[<options>][<left text>]{<id>}
+\end{verbatim}
+
+\paragraph{Arguments:}
+\begin{itemize}
+    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \texttt{[<left text>]} (optional): Text displayed on the left side of the badge (defaults to \texttt{DOI}, \texttt{arXiv} or \texttt{HAL}).
+    \item \texttt{\{<id>\}} (required): Number of identification of the publication.
+\end{itemize}
+
 
 \begin{tcblisting}{title={Publication badge}, lower separated=false}
 \doiBadge{10.1002/cnm.3864}

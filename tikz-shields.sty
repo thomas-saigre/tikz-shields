@@ -135,8 +135,6 @@
     }%
 }
 
-
-
 % Draw a badge
 % #1 Default options
 % #2 Left text
@@ -215,11 +213,10 @@
             \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}%
             %
         }%
-        }
+        }%
         \hspace{-1.5ex}%
     }
 }
-
 
 \newcommand{\drawBadge}[3][]{%
     %
@@ -240,19 +237,19 @@
 }
 
 
-\newcommand{\githubBadge}[2][]
+\NewDocumentCommand{\githubBadge}{O{} O{github} m}
 {
-    \drawBadge[link=https://github.com/#2, logo=\faGithub, #1]{}{github.com/#2}
+    \drawBadge[link=https://github.com/#3, logo=\faGithub, #1]{#2}{#3}
 }
 
-\newcommand{\gitlabBadge}[2][]
+\NewDocumentCommand{\gitlabBadge}{O{} O{gitlab} m}
 {
-    \drawBadge[link=https://gitlab.com/#2, logo=\faGitlab, #1]{}{gitlab.com/#2}
+    \drawBadge[link=https://gitlab.com/#3, logo=\faGitlab, #1]{#2}{#3}
 }
 
-\newcommand{\forgeBadge}[2][]
+\NewDocumentCommand{\forgeBadge}{O{} O{} m}
 {
-    \drawBadge[link=https://#2, #1]{}{#2}
+    \drawBadge[link=https://#3, #1]{#2}{#3}
 }
 
 \NewDocumentCommand{\licenseBadge}{O{} O{license} m}
@@ -260,14 +257,17 @@
     \drawBadge[link=https://creativecommons.org/#3, logo=\faBalanceScale, #1]{#2}{#3}
 }
 
-\newcommand{\doiBadge}[2][]{
-    \drawBadge[link=https://doi.org/#2, #1]{DOI}{#2}
+\NewDocumentCommand{\doiBadge}{O{} O{DOI} m}
+{
+    \drawBadge[link=https://doi.org/#3, #1]{#2}{#3}
 }
 
-\newcommand{\arxivBadge}[2][]{
-    \drawBadge[link=https://arxiv.org/abs/#2, #1]{arXiv}{#2}
+\NewDocumentCommand{\arxivBadge}{O{} O{arXiv} m}
+{
+    \drawBadge[link=https://arxiv.org/abs/#3, #1]{#2}{#3}
 }
 
-\newcommand{\halBadge}[2][]{
-    \drawBadge[link=https://hal.science/hal-#2, #1]{HAL}{#2}
+\NewDocumentCommand{\halBadge}{O{} O{HAL} m}
+{
+    \drawBadge[link=https://hal.science/hal-#3, #1]{#2}{#3}
 }
