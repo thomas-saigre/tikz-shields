@@ -120,6 +120,14 @@ and not
 }
 \end{tcblisting}
 
+The font used inside the badges can also be changed, either by using the \texttt{font} option where both text will be written with the same font;
+either by hard setting the text font.
+
+\begin{tcblisting}{title={Font}, lower separated=false}
+\drawBadge[font=\bf, baseline=1mm]{Boldface}{font}
+\drawBadge[font=\tt, style=social]{Monospaced}{font}
+\drawBadge[style=social]{\texttt{Personalized}}{\textsc{Fonts}}
+\end{tcblisting}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

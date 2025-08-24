@@ -58,7 +58,10 @@
 \providecommand*{\CTAN}{CTAN\xspace}
 \providecommand*{\TikZ}{Ti\emph{k}Z\xspace}
 \providecommand{\tex}{T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\xspace}
-\newcommand{\showColor}[1]{\texttt{#1} {\textcolor{#1}{\rule{1em}{1em}}}}
+\newcommand{\showColor}[1]{%
+  \texttt{#1}~%
+  \raisebox{-0.2em}{\tikz\draw[fill=#1] (0,0) rectangle ({1em},{1em});}%
+}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 \def\ctan{\includegraphics[height=1em]{doc/img/ctan-white.pdf}}
 
