@@ -250,15 +250,52 @@
     \fi%
 }
 
+%%% Handling logo depending on the logo library that is loaded
+\def\tikzshieldGithub{}
+\def\tikzshieldGitlab{}
+\def\tikzshieldLicence{}
+
+\@ifpackageloaded{fontawesome}%
+{%
+    \def\tikzshieldgithub{\faGithub}
+    \def\tikzshieldgitlab{\faGitlab}
+    \def\tikzshieldlicence{\faBalanceScale}
+}%
+{}%
+
+\@ifpackageloaded{fontawesome5}%
+{%
+    \def\tikzshieldgithub{\faGithub}
+    \def\tikzshieldgitlab{\faGitlab}
+    \def\tikzshieldlicence{\faBalanceScale}
+}%
+{}%
+
+\@ifpackageloaded{fontawesome6}%
+{%
+    \def\tikzshieldgithub{\faGithub}
+    \def\tikzshieldgitlab{\faGitlab}
+    \def\tikzshieldlicence{\faScaleBalanced}
+}%
+{}%
+
+\@ifpackageloaded{fontawesome7}%
+{%
+    \def\tikzshieldgithub{\faGithub}
+    \def\tikzshieldgitlab{\faGitlab}
+    \def\tikzshieldlicence{\faScaleBalanced}
+}%
+{}%
+
 
 \newcommand{\githubBadge}[2][]
 {
-    \drawBadge[link=https://github.com/#2, logo=\faGithub, #1]{}{github.com/#2}
+    \drawBadge[link=https://github.com/#2, logo=\tikzshieldGithub, #1]{}{github.com/#2}
 }
 
 \newcommand{\gitlabBadge}[2][]
 {
-    \drawBadge[link=https://gitlab.com/#2, logo=\faGitlab, #1]{}{gitlab.com/#2}
+    \drawBadge[link=https://gitlab.com/#2, logo=\tikzshieldGitlab, #1]{}{gitlab.com/#2}
 }
 
 \newcommand{\forgeBadge}[2][]
@@ -268,5 +305,5 @@
 
 \NewDocumentCommand{\licenseBadge}{O{} O{license} m}
 {
-    \drawBadge[link=https://creativecommons.org/#3, logo=\faBalanceScale, #1]{#2}{#3}
+    \drawBadge[link=https://creativecommons.org/#3, logo=\tikzshieldLicence, #1]{#2}{#3}
 }
