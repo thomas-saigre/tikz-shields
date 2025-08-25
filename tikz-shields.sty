@@ -14,9 +14,9 @@
 \ProvidesPackage{tikz-shields}[2025/05/12 version v0.1 Drawing badges with TikZ]
 
 \RequirePackage{tikz}
-\RequirePackage{fontawesome}
 \RequirePackage{hyperref}
-\RequirePackage[most]{tcolorbox}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
 \RequirePackage{xkeyval}
 \RequirePackage{ifthen}
 
@@ -40,6 +40,7 @@
         \PackageError{tikz-shields}{Invalid style option '#1'}{Valid options are: flat, flatsquare, plastic, for-the-badge, social.}
     \fi
 }
+\DeclareOptionX{fa}[1]{\def\shield@default@fa{#1}}
 
 \definecolor{default-blue}{HTML}{1283c4}
 \definecolor{default-left}{HTML}{5e5e5e}
@@ -56,7 +57,7 @@
 \ExecuteOptionsX{colorRight}
 \ExecuteOptionsX{logoColor}
 \ExecuteOptionsX{style}
-
+\ExecuteOptionsX{fa}
 
 \define@key{badge}{labelColor}{\def\badge@labelColor{#1}}
 \define@key{badge}{color}{\def\badge@color{#1}}
@@ -71,7 +72,18 @@
 
 \ProcessOptionsX
 
-
+\ifnum\shield@default@fa=1\relax
+    \RequirePackage{fontawesome}
+\fi
+\ifnum\shield@default@fa=5\relax
+    \RequirePackage{fontawesome5}
+\fi
+\ifnum\shield@default@fa=6\relax
+    \RequirePackage{fontawesome6}
+\fi
+\ifnum\shield@default@fa=7\relax
+    \RequirePackage{fontawesome7}
+\fi
 
 \newtcbox{\socialleft}{
   enhanced,
