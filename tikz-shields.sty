@@ -69,6 +69,7 @@
 \define@boolkey{badge}{showlink}{\def\badge@showlink{#1}}
 \define@choicekey{badge}{style}{flat,flat-square,plastic,for-the-badge,social}{\def\badge@style{#1}}
 \define@key{badge}{baseline}{\def\badge@baseline{#1}}
+\define@key{badge}{font}{\def\badge@font{#1}}
 
 \ProcessOptionsX
 
@@ -147,8 +148,6 @@
     }%
 }
 
-
-
 % Draw a badge
 % #1 Default options
 % #2 Left text
@@ -162,13 +161,15 @@
     \def\badge@logoColor{\shield@default@logoColor}%
     \def\badge@style{\shield@default@style}%
     \def\badge@baseline{0mm}%
+    \def\badge@font{\shield@default@font}%
     %
     \setkeys{badge}{#1}%
     %
     \ifthenelse{\equal{\badge@style}{social}}{%
         % social badge : special handling
-        \shield@default@font%
+        \badge@font%
         \mbox{\socialleft{#2\vphantom{#3}}\hspace{1ex}\socialright{#3\vphantom{#2}}}%
+        \normalfont%
     }{%
         \def\opt@rounded{rounded corners}%
         \def\opt@margin{0pt}%
@@ -210,8 +211,8 @@
             baseline=\badge@baseline,
             interior style={top color=\badge@labelColor\opt@topColor, bottom color=\badge@labelColor\opt@bottomColor},
             segmentation style={top color=\badge@color\opt@topColor, bottom color=\badge@color\opt@bottomColor},
-        ]{  % Left bloc
-            \shield@default@font%
+        ]{%  % Left bloc
+            \badge@font%
             \ifx\badge@logo\@empty%
             \else%
                 \droptextnoshadow{\badge@logoColor}{\badge@logo}~%
@@ -221,16 +222,14 @@
                 \droptextshadow{\badge@labelColor}{\badge@colorLeft}{#2\vphantom{#3}}%
                 %
             \fi%
-        }{  % Right bloc
-            \shield@default@font
+        }{%  % Right bloc
+            \badge@font%
             \droptextshadow{\badge@color}{\badge@colorRight}{#3\vphantom{#2}}%
             %
         }%
-        }
-        \hspace{-1.5ex}%
-    }
+        }%
+    }%
 }
-
 
 \newcommand{\drawBadge}[3][]{%
     %
@@ -292,22 +291,37 @@
 {}%
 
 
-\newcommand{\githubBadge}[2][]
+\NewDocumentCommand{\githubBadge}{O{} O{github} m}
 {
-    \drawBadge[link=https://github.com/#2, logo=\tikzshieldGithub, #1]{}{github.com/#2}
+    \drawBadge[link=https://github.com/#3, logo=\tikzshieldGithub, #1]{#2}{#3}
 }
 
-\newcommand{\gitlabBadge}[2][]
+\NewDocumentCommand{\gitlabBadge}{O{} O{gitlab} m}
 {
-    \drawBadge[link=https://gitlab.com/#2, logo=\tikzshieldGitlab, #1]{}{gitlab.com/#2}
+    \drawBadge[link=https://gitlab.com/#3, logo=\tikzshieldGitlab, #1]{#2}{#3}
 }
 
-\newcommand{\forgeBadge}[2][]
+\NewDocumentCommand{\forgeBadge}{O{} O{} m}
 {
-    \drawBadge[link=https://#2, #1]{}{#2}
+    \drawBadge[link=https://#3, #1]{#2}{#3}
 }
 
 \NewDocumentCommand{\licenseBadge}{O{} O{license} m}
 {
     \drawBadge[link=https://creativecommons.org/#3, logo=\tikzshieldLicence, #1]{#2}{#3}
+}
+
+\NewDocumentCommand{\doiBadge}{O{} O{DOI} m}
+{
+    \drawBadge[link=https://doi.org/#3, #1]{#2}{#3}
+}
+
+\NewDocumentCommand{\arxivBadge}{O{} O{arXiv} m}
+{
+    \drawBadge[link=https://arxiv.org/abs/#3, #1]{#2}{#3}
+}
+
+\NewDocumentCommand{\halBadge}{O{} O{HAL} m}
+{
+    \drawBadge[link=https://hal.science/hal-#3, #1]{#2}{#3}
 }

@@ -3,11 +3,9 @@
 ![logo-tikzshields](https://raw.githubusercontent.com/thomas-saigre/tikz-shields/refs/heads/main/doc/img/logo.svg "Tikz-shields")
 
 [![CTAN](https://img.shields.io/ctan/v/tikz-shields.svg)](https://ctan.org/pkg/tikz-shields)
-[![License](https://img.shields.io/github/license/thomas-saigre/tikz-shields
-)](https://github.com/thomas-saigre/tikz-shields/blob/main/LICENSE)
-[![GitHub tag](https://img.shields.io/github/v/release/thomas-saigre/tikz-shields
-)](https://github.com/thomas-saigre/tikz-shields/releases/latest)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/thomas-saigre/tikz-shields)
+[![License](https://img.shields.io/github/license/thomas-saigre/tikz-shields)](https://github.com/thomas-saigre/tikz-shields/blob/main/LICENSE)
+[![GitHub tag](https://img.shields.io/github/v/release/thomas-saigre/tikz-shields)](https://github.com/thomas-saigre/tikz-shields/releases/latest)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/thomas-saigre/tikz-shields)](https://github.com/thomas-saigre/tikz-shields/issues)
 
 
 Badges as in shields.io, but in LaTeX.
