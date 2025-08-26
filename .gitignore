@@ -8,4 +8,5 @@
 *.toc
 .vscode/*
 _minted-tikz-shields-doc/*
+_minted/*
 *.listing
