@@ -14,9 +14,9 @@
 \ProvidesPackage{tikz-shields}[2025/05/12 version v0.1 Drawing badges with TikZ]
 
 \RequirePackage{tikz}
-\RequirePackage{fontawesome}
 \RequirePackage{hyperref}
-\RequirePackage[most]{tcolorbox}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
 \RequirePackage{xkeyval}
 \RequirePackage{ifthen}
 
@@ -40,6 +40,7 @@
         \PackageError{tikz-shields}{Invalid style option '#1'}{Valid options are: flat, flatsquare, plastic, for-the-badge, social.}
     \fi
 }
+\DeclareOptionX{fa}[1]{\def\shield@default@fa{#1}}
 
 \definecolor{default-blue}{HTML}{1283c4}
 \definecolor{default-left}{HTML}{5e5e5e}
@@ -56,7 +57,7 @@
 \ExecuteOptionsX{colorRight}
 \ExecuteOptionsX{logoColor}
 \ExecuteOptionsX{style}
-
+\ExecuteOptionsX{fa}
 
 \define@key{badge}{labelColor}{\def\badge@labelColor{#1}}
 \define@key{badge}{color}{\def\badge@color{#1}}
@@ -72,7 +73,18 @@
 
 \ProcessOptionsX
 
-
+\ifnum\shield@default@fa=1\relax
+    \RequirePackage{fontawesome}
+\fi
+\ifnum\shield@default@fa=5\relax
+    \RequirePackage{fontawesome5}
+\fi
+\ifnum\shield@default@fa=6\relax
+    \RequirePackage{fontawesome6}
+\fi
+\ifnum\shield@default@fa=7\relax
+    \RequirePackage{fontawesome7}
+\fi
 
 \newtcbox{\socialleft}{
   enhanced,
@@ -237,15 +249,56 @@
     \fi%
 }
 
+%%% Handling logo depending on the logo library that is loaded
+\def\tikzshieldGithub{}
+\def\tikzshieldGitlab{}
+\def\tikzshieldLicence{}
+
+\@ifpackageloaded{fontawesome}%
+{%
+    \PackageInfo{tikz-shield}{fontawesome is loaded}
+    \def\tikzshieldGithub{\faGithub}
+    \def\tikzshieldGitlab{\faGitlab}
+    \def\tikzshieldLicence{\faBalanceScale}
+}%
+{}%
+
+\@ifpackageloaded{fontawesome5}%
+{%
+    \PackageInfo{tikz-shield}{fontawesome5 is loaded}
+    \def\tikzshieldGithub{\faGithub}
+    \def\tikzshieldGitlab{\faGitlab}
+    \def\tikzshieldLicence{\faBalanceScale}
+}%
+{}%
+
+\@ifpackageloaded{fontawesome6}%
+{%
+    \PackageInfo{tikz-shield}{fontawesome6 is loaded}
+    \def\tikzshieldGithub{\faGithub}
+    \def\tikzshieldGitlab{\faGitlab}
+    \def\tikzshieldLicence{\faScaleBalanced}
+}%
+{}%
+
+\@ifpackageloaded{fontawesome7}%
+{%
+    \PackageInfo{tikz-shield}{fontawesome7 is loaded}
+    \def\tikzshieldGithub{\faGithub}
+    \def\tikzshieldGitlab{\faGitlab}
+    \def\tikzshieldLicence{\faScaleBalanced}
+}%
+{}%
+
 
 \NewDocumentCommand{\githubBadge}{O{} O{github} m}
 {
-    \drawBadge[link=https://github.com/#3, logo=\faGithub, #1]{#2}{#3}
+    \drawBadge[link=https://github.com/#3, logo=\tikzshieldGithub, #1]{#2}{#3}
 }
 
 \NewDocumentCommand{\gitlabBadge}{O{} O{gitlab} m}
 {
-    \drawBadge[link=https://gitlab.com/#3, logo=\faGitlab, #1]{#2}{#3}
+    \drawBadge[link=https://gitlab.com/#3, logo=\tikzshieldGitlab, #1]{#2}{#3}
 }
 
 \NewDocumentCommand{\forgeBadge}{O{} O{} m}
@@ -255,7 +308,7 @@
 
 \NewDocumentCommand{\licenseBadge}{O{} O{license} m}
 {
-    \drawBadge[link=https://creativecommons.org/#3, logo=\faBalanceScale, #1]{#2}{#3}
+    \drawBadge[link=https://creativecommons.org/#3, logo=\tikzshieldLicence, #1]{#2}{#3}
 }
 
 \NewDocumentCommand{\doiBadge}{O{} O{DOI} m}
