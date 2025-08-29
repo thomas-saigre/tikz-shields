@@ -9,16 +9,36 @@ on:
       - '*'
 
 jobs:
-  test:
-    name: Run tests
+
+  release:
+    name: Test and create artifact
     runs-on: ubuntu-latest
     steps:
+
     - name: checkout code
       uses: actions/checkout@v5
-    - uses: xu-cheng/latex-action@v4
+
+    - name: Compile documentation document
+      uses: xu-cheng/latex-action@v4
       with:
         root_file: |
           tests/test-fa0.tex
           tests/test-fa1.tex
           tests/test-fa5.tex
           tikz-shields-doc.tex
+        latexmk_shell_escape: true
+        post_compile: "latexmk -c; rm -rf _minted*"
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: tikz-shields
+        path: |
+          ./tikz-shields.sty
+          ./tikz-shields-doc.tex
+          ./tikz-shields-doc.pdf
+          ./README.md
+          ./LICENSE
+          ./doc/**
+          !./.git*
+          !./.gitignore
