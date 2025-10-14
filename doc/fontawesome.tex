@@ -4,7 +4,7 @@
 As pointed out in \drawBadge[logo=\faDotCircleO, link=https://github.com/thomas-saigre/tikz-shields/issues/9, baseline=1.8mm]{Issue}{\#9},
 there might be some issues of compatibility if a different version of \textsf{fontawesome} is loaded.
 
-This can be set with the option \texttt{fa} at loading of the package: \mintinline[breaklines]{tex}{\usepackage[fa=<n>]{tikz-shileds}}.
+This can be set with the option \texttt{fa} when loading the package: \mintinline[breaklines]{tex}{\usepackage[fa=<n>]{tikz-shields}}.
 \begin{center}
     \begin{tblr}{
         colspec = {Q[c,m, cmd=\texttt]Q[c,m]Q[c,m]},
@@ -13,7 +13,7 @@ This can be set with the option \texttt{fa} at loading of the package: \mintinli
         width = \textwidth,
     }
     \texttt{n} & Package loaded & Note  \\
-    0 & None & You can still use the option \texttt{logo} \\
+    0 & None & You can manually load any package you want. \\
     1 & \drawBadge[logo=\ctan, link=https://ctan.org/pkg/fontawesome, baseline=1.8mm]{}{fontawesome} & Default value, used for this document.  \\
     5 & \drawBadge[logo=\ctan, link=https://ctan.org/pkg/fontawesome5, baseline=1.8mm]{}{fontawesome5} &  \\
     6 & \drawBadge[logo=\ctan, link=https://ctan.org/pkg/fontawesome6, baseline=1.8mm]{}{fontawesome6} &  \\

@@ -33,7 +33,7 @@ Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawB
     Name & Description & Default value & Pkg \\
     baseline & Baseline of the badge & \texttt{0mm} & \\
     color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
-    colorLeft & Text color of the right part of the badge & \showColor{white} & \checkmark \\
+    colorLeft & Text color of the left part of the badge & \showColor{white} & \checkmark \\
     colorRight & Text color of the right part of the badge & \showColor{white} & \checkmark \\
     font & Font used in badges & \texttt{\textbackslash sf} & \checkmark \\
     labelColor & Background color of the left part of the badge & \showColor{default-left} & \checkmark \\
@@ -64,7 +64,24 @@ The Section~\ref{sec:examples} presents some examples of badges that can be gene
 \section{Examples}
 \label{sec:examples}
 
-The color of the right part can be customized, the default color being a rectangle of color \showColor{default-blue}.
+\subsection{Customize badges}
+
+The colors of backgrounds and texts can be customized, the default color being \showColor{default-left} and \showColor{default-blue},
+for the left and right part respectively.
+Following the names from \url{img.shields.io}, the options are:
+
+\begin{center}
+    \begin{tblr}{
+        colspec = {Q[c,m, cmd=\textbf, bg=default-blue!40]Q[c,m,cmd=\texttt]Q[c,m,cmd=\texttt]},
+        row{1} = {cmd=\textbf, bg=default-blue, fg=white},
+        vlines, hlines,
+        width = \textwidth,
+    }
+     & Left bloc & Right bloc  \\
+    Background & labelColor & color \\
+    Text & colorLeft & colorRight \\
+    \end{tblr}
+\end{center}
 
 
 \begin{tcblisting}{title={Change color}, lower separated=false}
@@ -73,6 +90,8 @@ The color of the right part can be customized, the default color being a rectang
 \drawBadge[labelColor=pink, color=black, colorRight=yellow]{Any text}{you like}
 \end{tcblisting}
 
+Custom logos can be employed, as in the previous example where an image is loaded to use the logo%
+\footnote{Logo of \CTAN is a courtesy of \href{https://gitlab.com/comprehensive-tex-archive-network/ctan-site/-/blob/master/src/artwork/logo/ctan-book-animation-globe.xcf}{\CTAN}.}.
 
 \begin{tcblisting}{title={Customize logo}, lower separated=false}
 \drawBadge[logo=\faFilm]{Movie}{5~\faStar}
@@ -81,16 +100,6 @@ The color of the right part can be customized, the default color being a rectang
 \drawBadge[logo=\ctan]{\CTAN}{tikz-shields}
 \end{tcblisting}
 
-Custom logos can be employed, as in the previous example where an image is loaded to use the logo%
-\footnote{Logo of \CTAN is a courtesy of \href{https://gitlab.com/comprehensive-tex-archive-network/ctan-site/-/blob/master/src/artwork/logo/ctan-book-animation-globe.xcf}{\CTAN}.}.
-
-
-\begin{tcblisting}{title={Clickable badges}, lower separated=false}
-\drawBadge[logo=\faWikipediaW, link=https://www.wikipedia.org]{}{Wikipedia}
-\drawBadge[logo=\faWikipediaW, showlink=true, link=https://www.wikipedia.org]{}{Wikipedia}
-\end{tcblisting}
-
-Note, for document where the links are hidden by default with \textsf{hyperref} (as the present document), this option won't have any effect.
 
 \vspace{\baselineskip}
 
@@ -127,6 +136,20 @@ either by hard setting the text font.
 \drawBadge[font=\bf, baseline=1mm]{Boldface}{font}
 \drawBadge[font=\tt, style=social]{Monospaced}{font}
 \drawBadge[style=social]{\texttt{Personalized}}{\textsc{Fonts}}
+\end{tcblisting}
+
+
+
+\subsection{Clickable badges}
+
+
+Clickable links can also be set, using the option \texttt{link}.
+Another option, \texttt{showlink}, can be used to set whether the colored frame around the button appear.
+Note, for document where the links are hidden by default with \textsf{hyperref} (as the present document), this option won't have any effect.
+
+\begin{tcblisting}{title={Clickable badges}, lower separated=false}
+\drawBadge[logo=\faWikipediaW, link=https://www.wikipedia.org]{}{Wikipedia}
+\drawBadge[logo=\faWikipediaW, showlink=true, link=https://www.wikipedia.org]{}{Wikipedia}
 \end{tcblisting}
 
 
