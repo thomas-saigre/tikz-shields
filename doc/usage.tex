@@ -232,7 +232,7 @@ Note that this webpage may not exist, but the link can either be manually change
 
 \subsection{Publication badges}
 
-The commands \texttt{\textbackslash doiBadges} (resp. \texttt{\textbackslash arxivBadges} and \texttt{\textbackslash halBadge}) create badges where the identification that redirect to the publication webpage (resp. \texttt{https://doi.ord/<id>}, \texttt{https://arxiv.org/abs/<id>} and \texttt{https://hal.science/hal-<id>}).
+The commands \texttt{\textbackslash doiBadge} (as well as \texttt{\textbackslash arxivBadge}, \texttt{\textbackslash halBadge} and \texttt{\textbackslash arxivBadge}) create that redirect to the publication webpage from the provided identification number.
 
 \paragraph{Syntax:}
 \begin{verbatim}
@@ -246,9 +246,27 @@ The commands \texttt{\textbackslash doiBadges} (resp. \texttt{\textbackslash arx
     \item \texttt{\{<id>\}} (required): Number of identification of the publication.
 \end{itemize}
 
+Other commands with the same prototype are also provided and redirect to different publication platforms, as shown in the following table:
+
+\begin{center}
+    \begin{tblr}{
+        colspec = {Q[c,m, cmd=\texttt]Q[c,m, cmd=\texttt]},
+        row{1} = {cmd=\textbf, bg=default-blue, fg=white},
+        vlines, hlines,
+        width = \textwidth,
+    }
+    Macro & Redirection link \\
+    \textbackslash doiBadge & https://doi.ord/<id> \\
+    \textbackslash arxivBadge & https://arxiv.org/abs/<id> \\
+    \textbackslash halBadge & https://hal.science/hal-<id> \\
+    \textbackslash pubmedBadge & https://pubmed.ncbi.nlm.nih.gov/<id> \\
+    \end{tblr}
+\end{center}
+
 
 \begin{tcblisting}{title={Publication badge}, lower separated=false}
 \doiBadge{10.1002/cnm.3864}
 \arxivBadge{2503.22907v1}
 \halBadge{04918559}
+\pubmedBadge{35955000}
 \end{tcblisting}
