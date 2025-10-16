@@ -13,12 +13,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ProvidesPackage{tikz-shields}[2025/05/12 version v0.1 Drawing badges with TikZ]
 
-\RequirePackage{tikz}
-\RequirePackage{hyperref}
-\RequirePackage{tcolorbox}
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}
+\@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
+\@ifpackageloaded{tcolorbox}{}{\RequirePackage{tcolorbox}}
 \tcbuselibrary{skins}
-\RequirePackage{xkeyval}
-\RequirePackage{ifthen}
+\@ifpackageloaded{xkeyval}{}{\RequirePackage{xkeyval}}
+\@ifpackageloaded{ifthen}{}{\RequirePackage{ifthen}}
 
 
 \DeclareOptionX{font}[\sf]{\def\shield@default@font{#1}}
@@ -74,16 +74,16 @@
 \ProcessOptionsX
 
 \ifnum\shield@default@fa=1\relax
-    \RequirePackage{fontawesome}
+    \@ifpackageloaded{fontawesome}{}{\RequirePackage{fontawesome}}
 \fi
 \ifnum\shield@default@fa=5\relax
-    \RequirePackage{fontawesome5}
+    \@ifpackageloaded{fontawesome5}{}{\RequirePackage{fontawesome5}}
 \fi
 \ifnum\shield@default@fa=6\relax
-    \RequirePackage{fontawesome6}
+    \@ifpackageloaded{fontawesome6}{}{\RequirePackage{fontawesome6}}
 \fi
 \ifnum\shield@default@fa=7\relax
-    \RequirePackage{fontawesome7}
+    \@ifpackageloaded{fontawesome7}{}{\RequirePackage{fontawesome7}}
 \fi
 
 \newtcbox{\socialleft}{
