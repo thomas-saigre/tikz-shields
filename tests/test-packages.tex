@@ -1,0 +1,18 @@
+\documentclass{article}
+
+\usepackage[
+  final,
+  pdfduplex=DuplexFlipShortEdge,
+  pdfpagelayout=TwoPageRight,
+  pdfstartview={Fit}
+  ]{hyperref}
+\usepackage{tikz-shields}
+
+\begin{document}
+
+\section{Hello}
+\label{lab1}
+
+Inline \drawBadge[baseline=1mm]{Ref}{Sec. \ref{lab1}}.
+
+\end{document}

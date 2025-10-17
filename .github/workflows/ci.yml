@@ -27,6 +27,7 @@ jobs:
           tests/test-fa0.tex
           tests/test-fa1.tex
           tests/test-fa5.tex
+          tests/test-packages.tex
           tikz-shields-doc.tex
         latexmk_shell_escape: true
         post_compile: "latexmk -c; rm -rf _minted*"

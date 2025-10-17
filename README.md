@@ -29,6 +29,11 @@ Badges as in shields.io, but in LaTeX.
 
 For more details, please consult the package documentation.
 
+## Dependencies
+
+This package depends on the following ones: `tikz`, `hyperref`, `tcolorbox`, `fontawesome` (or other version), `xkeyval` and `ifthen`.
+
+
 ## License
 
 Copyright @thomas-saigre, maintainer of the package.
