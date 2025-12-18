@@ -58,8 +58,8 @@
 \providecommand*{\CTAN}{CTAN\xspace}
 \providecommand*{\TikZ}{Ti\emph{k}Z\xspace}
 \providecommand{\tex}{T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\xspace}
-\newcommand{\showColor}[1]{%
-  \texttt{#1}~%
+\providecommand{\showColor}[1]{%
+  \mintex{#1}~%
   \raisebox{-0.2em}{\tikz\draw[fill=#1] (0,0) rectangle ({1em},{1em});}%
 }
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
@@ -72,6 +72,7 @@
   \rlap{\rule{\wd\textbox}{.1pt}}%
   \usebox\textbox
 }
+\providecommand{\mintex}[1]{\mintinline[breaklines]{tex}{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

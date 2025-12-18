@@ -4,7 +4,7 @@
 As pointed out in \drawBadge[logo=\faDotCircleO, link=https://github.com/thomas-saigre/tikz-shields/issues/9, baseline=1.8mm]{Issue}{\#9},
 there might be some issues of compatibility if a different version of \textsf{fontawesome} is loaded.
 
-This can be set with the option \texttt{fa} when loading the package: \mintinline[breaklines]{tex}{\usepackage[fa=<n>]{tikz-shields}}.
+This can be set with the option \mintex{fa} when loading the package: \mintex{\usepackage[fa=<n>]{tikz-shields}}.
 \begin{center}
     \begin{tblr}{
         colspec = {Q[c,m, cmd=\texttt]Q[c,m]Q[c,m]},
@@ -26,14 +26,14 @@ If no logo package is loaded, or if the desired logo is not present in the packa
 
 \begin{center}
     \begin{tblr}{
-        colspec = {Q[c,m, cmd=\texttt]Q[c,m]Q[c,m]},
+        colspec = {Q[c,m, cmd=\mintex]Q[c,m]Q[c,m]},
         row{1} = {cmd=\textbf, bg=default-blue, fg=white},
         vlines, hlines,
         width = \textwidth,
     }
-    Macro & Description & Example (with \texttt{fa=1})  \\
-    \textbackslash tikzshieldGithub & GitHub logo & \tikzshieldGithub \\
-    \textbackslash tikzshieldGitlab & GitLab logo & \tikzshieldGitlab \\
-    \textbackslash tikzshieldLicence & Balance icon & \tikzshieldLicence \\
+    Macro & Description & Example (with \mintex{fa=1})  \\
+    \tikzshieldGithub & GitHub logo & \tikzshieldGithub \\
+    \tikzshieldGitlab & GitLab logo & \tikzshieldGitlab \\
+    \tikzshieldLicence & Balance icon & \tikzshieldLicence \\
     \end{tblr}
 \end{center}

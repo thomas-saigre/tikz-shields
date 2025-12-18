@@ -2,15 +2,15 @@
 \section{Basic usage}
 
 \paragraph{Syntax:}
-\begin{verbatim}
+\begin{minted}{tex}
 \drawBadge[<options>]{<left text>}{<right text>}
-\end{verbatim}
+\end{minted}
 
 \paragraph{Arguments:}
 \begin{itemize}
-    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see next section.
-    \item \texttt{\{<left text\}} (required): Text displayed in the left part of the badge.
-    \item \texttt{\{<right text\}} (required): Text displayed in the right part of the badge.
+    \item \mintex{[<options>]} (optional): Key-value options to customize the badge appearance, see next section.
+    \item \mintex{{<left text}} (required): Text displayed in the left part of the badge.
+    \item \mintex{{<right text}} (required): Text displayed in the right part of the badge.
 \end{itemize}
 
 \begin{tcblisting}{title={\tikzshields}, lower separated=false}
@@ -21,27 +21,27 @@
 \section{Optional arguments}
 \label{sec:args}
 
-Some optional arguments can be passed to the macro \texttt{\textbackslash{}drawBadge} (as well as the other ones described in this document):
+Some optional arguments can be passed to the macro \mintex{\drawBadge} (as well as the other ones described in this document):
 
 \begin{center}
     \begin{tblr}{
-        colspec = {Q[c,m, cmd=\texttt,0.18\textwidth]X[0.5\textwidth,m]X[0.17\textwidth,c,m]X[0.04\textwidth,c,m]},
+        colspec = {Q[c,m, cmd=\mintex,0.18\textwidth]X[0.49\textwidth,m]X[0.17\textwidth,c,m]X[0.05\textwidth,c,m]},
         row{1} = {cmd=\textbf, bg=default-blue, fg=white},
         vlines, hlines,
         width = \textwidth,
     }
     Name & Description & Default value & Pkg \\
-    baseline & Baseline of the badge & \texttt{0mm} & \\
+    baseline & Baseline of the badge & \mintex{0mm} & \\
     color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
     colorLeft & Text color of the left part of the badge & \showColor{white} & \checkmark \\
     colorRight & Text color of the right part of the badge & \showColor{white} & \checkmark \\
-    font & Font used in badges & \texttt{\textbackslash sf} & \checkmark \\
+    font & Font used in badges & \mintex{\sf} & \checkmark \\
     labelColor & Background color of the left part of the badge & \showColor{default-left} & \checkmark \\
     logo & Logo displayed before the text & & \\
     logoColor & Color of the logo & \showColor{white} & \checkmark \\
     link & Clickable link & & \\
-    showlink & Draw the \textsf{hyperref} border around the badge & \texttt{false} & \\
-    style & Style of the badge. Possible values are: \texttt{flat}, \texttt{flat-square}, \texttt{plastic}, \texttt{for-the-badge}, \texttt{social} & \texttt{flat} & \checkmark \\
+    showlink & Draw the \textsf{hyperref} border around the badge & \mintex{false} & \\
+    style & Style of the badge. Possible values are: \mintex{flat}, \mintex{flat-square}, \mintex{plastic}, \mintex{for-the-badge}, \mintex{social} & \mintex{flat} & \checkmark \\
     \end{tblr}
 \end{center}
 
@@ -72,7 +72,7 @@ Following the names from \url{img.shields.io}, the options are:
 
 \begin{center}
     \begin{tblr}{
-        colspec = {Q[c,m, cmd=\textbf, bg=default-blue!40]Q[c,m,cmd=\texttt]Q[c,m,cmd=\texttt]},
+        colspec = {Q[c,m, cmd=\textbf, bg=default-blue!40]Q[c,m,cmd=\mintex]Q[c,m,cmd=\mintex]},
         row{1} = {cmd=\textbf, bg=default-blue, fg=white},
         vlines, hlines,
         width = \textwidth,
@@ -114,13 +114,13 @@ The style of the badge can also be chosen:
 \end{tcblisting}
 
 As you can see in previous example, the badges are not aligned vertically.
-At this point, only \drawBadge[style=social]{social}{badges} are automatically aligned with surrounding text (option \texttt{tcbox raise base} which does not work with \texttt{\textbackslash tcbsidebyside}).
+At this point, only \drawBadge[style=social]{social}{badges} are automatically aligned with surrounding text (option \mintex{tcbox raise base} which does not work with \mintex{\tcbsidebyside}).
 
-The option \texttt{basline} allows to manually set a vertical shift of the badges, but depend on the text present in the badge, by default it is null.
+The option \mintex{baseline} allows to manually set a vertical shift of the badges, but depend on the text present in the badge, by default it is null.
 
 \begin{tcblisting}{
     title={Baseline%
-        \footnote{The implementation of the macro \texttt{\textbackslash showbaseline} is taken from \drawBadge[link=https://tex.stackexchange.com/a/432196/243474, logo=\faStackExchange, baseline=1.8mm]{tex.stackexchange.com}{\texttt{432196/243474}}.}},
+        \footnote{The implementation of the macro \mintex{\showbaseline} is taken from \drawBadge[link=https://tex.stackexchange.com/a/432196/243474, logo=\faStackExchange, baseline=1.8mm]{tex.stackexchange.com}{\texttt{432196/243474}}.}},
     lower separated=false}
 \showbaseline{Hello, I'm
 \drawBadge[baseline=1.8mm]{Arthur}{Pendragon},
@@ -129,7 +129,7 @@ and not
 }
 \end{tcblisting}
 
-The font used inside the badges can also be changed, either by using the \texttt{font} option where both text will be written with the same font;
+The font used inside the badges can also be changed, either by using the \mintex{font} option where both text will be written with the same font;
 either by hard setting the text font.
 
 \begin{tcblisting}{title={Font}, lower separated=false}
@@ -143,8 +143,8 @@ either by hard setting the text font.
 \subsection{Clickable badges}
 
 
-Clickable links can also be set, using the option \texttt{link}.
-Another option, \texttt{showlink}, can be used to set whether the colored frame around the button appear.
+Clickable links can also be set, using the option \mintex{link}.
+Another option, \mintex{showlink}, can be used to set whether the colored frame around the button appear.
 Note, for document where the links are hidden by default with \textsf{hyperref} (as the present document), this option won't have any effect.
 
 \begin{tcblisting}{title={Clickable badges}, lower separated=false}
@@ -164,23 +164,23 @@ For each one of them, the default options can be used to overwrite default value
 
 \subsection{Git repository}
 
-The \texttt{\textbackslash githubBadge} command creates a badge showing path to a given repository.
+The \mintex{\githubBadge} command creates a badge showing path to a given repository.
 By default, the badge is clickable to \texttt{https://github.com/<repo path>} is done.
 
 
 \paragraph{Syntax:}
-\begin{verbatim}
+\begin{minted}{tex}
 \githubBadge[<options>][<left text>]{<repo path>}
-\end{verbatim}
+\end{minted}
 
 \paragraph{Arguments:}
 \begin{itemize}
-    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
-    \item \texttt{[<left text>]} (optional): Text displayed on the left side of the badge, by default \texttt{github} (or \texttt{gitlab} or empty for the other commands).
-    \item \texttt{\{<repo path>\}} (required): Path to the repository.
+    \item \mintex{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \mintex{[<left text>]} (optional): Text displayed on the left side of the badge, by default \mintex{github} (or \mintex{gitlab} or empty for the other commands).
+    \item \mintex{{<repo path>}} (required): Path to the repository.
 \end{itemize}
 
-The prototype is the same for \texttt{\textbackslash gitlabBadge} and \texttt{\textbackslash forgeBadge}.
+The prototype is the same for \mintex{\gitlabBadge} and \mintex{\forgeBadge}.
 In the first case, the link redirects to \texttt{https://gitlab.com/<repo path>},
 and in the second to \texttt{https://<repo path>}.
 
@@ -206,20 +206,20 @@ The icon can be customized, as well as the color.
 \subsection{License}
 
 
-The \texttt{\textbackslash licenseBadge} command creates a badge displaying a license name, optionally with custom options and left-side text.
+The \mintex{\licenseBadge} command creates a badge displaying a license name, optionally with custom options and left-side text.
 By default, a clickable badge directing to \texttt{https://creativecommons.org/<license name>} is done.
 Note that this webpage may not exist, but the link can either be manually changed, or an empty link can be provided.
 
 \paragraph{Syntax:}
-\begin{verbatim}
+\begin{minted}{tex}
 \licenseBadge[<options>][<left text>]{<license name>}
-\end{verbatim}
+\end{minted}
 
 \paragraph{Arguments:}
 \begin{itemize}
-    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
-    \item \texttt{[<left text>]} (optional): Text displayed on the left side of the badge (defaults to \texttt{license} in lowercase).
-    \item \texttt{\{<license name>\}} (required): Name of the license to display.
+    \item \mintex{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \mintex{[<left text>]} (optional): Text displayed on the left side of the badge (defaults to \mintex{license} in lowercase).
+    \item \mintex{{<license name>}} (required): Name of the license to display.
 \end{itemize}
 
 
@@ -232,34 +232,34 @@ Note that this webpage may not exist, but the link can either be manually change
 
 \subsection{Publication badges}
 
-The commands \texttt{\textbackslash doiBadge} (as well as \texttt{\textbackslash arxivBadge}, \texttt{\textbackslash halBadge} and \texttt{\textbackslash arxivBadge}) create that redirect to the publication webpage from the provided identification number.
+The commands \mintex{\doiBadge} (as well as \mintex{\arxivBadge}, \mintex{\halBadge} and \mintex{\pubmedBadge}) create that redirect to the publication webpage from the provided identification number.
 
 \paragraph{Syntax:}
-\begin{verbatim}
+\begin{minted}{tex}
 \doiBadge[<options>][<left text>]{<id>}
-\end{verbatim}
+\end{minted}
 
 \paragraph{Arguments:}
 \begin{itemize}
-    \item \texttt{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
-    \item \texttt{[<left text>]} (optional): Text displayed on the left side of the badge (defaults to \texttt{DOI}, \texttt{arXiv} or \texttt{HAL}).
-    \item \texttt{\{<id>\}} (required): Number of identification of the publication.
+    \item \mintex{[<options>]} (optional): Key-value options to customize the badge appearance, see above.
+    \item \mintex{[<left text>]} (optional): Text displayed on the left side of the badge (defaults to \mintex{DOI}, \mintex{arXiv}, \mintex{HAL} or \mintex{PubMed} respectively).
+    \item \mintex{{<id>}} (required): Number of identification of the publication.
 \end{itemize}
 
 Other commands with the same prototype are also provided and redirect to different publication platforms, as shown in the following table:
 
 \begin{center}
     \begin{tblr}{
-        colspec = {Q[c,m, cmd=\texttt]Q[c,m, cmd=\texttt]},
+        colspec = {Q[c,m, cmd=\mintex]Q[c,m, cmd=\texttt]},
         row{1} = {cmd=\textbf, bg=default-blue, fg=white},
         vlines, hlines,
         width = \textwidth,
     }
-    Macro & Redirection link \\
-    \textbackslash doiBadge & https://doi.ord/<id> \\
-    \textbackslash arxivBadge & https://arxiv.org/abs/<id> \\
-    \textbackslash halBadge & https://hal.science/hal-<id> \\
-    \textbackslash pubmedBadge & https://pubmed.ncbi.nlm.nih.gov/<id> \\
+    Macro        & Redirection link \\
+    \doiBadge    & https://doi.ord/<id> \\
+    \arxivBadge  & https://arxiv.org/abs/<id> \\
+    \halBadge    & https://hal.science/hal-<id> \\
+    \pubmedBadge & https://pubmed.ncbi.nlm.nih.gov/<id> \\
     \end{tblr}
 \end{center}
 
