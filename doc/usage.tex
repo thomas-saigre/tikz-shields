@@ -35,7 +35,7 @@ Some optional arguments can be passed to the macro \mintex{\drawBadge} (as well 
     color & Background color of the right part of the badge & \showColor{default-blue} & \checkmark \\
     colorLeft & Text color of the left part of the badge & \showColor{white} & \checkmark \\
     colorRight & Text color of the right part of the badge & \showColor{white} & \checkmark \\
-    font & Font used in badges & \mintex{\sf} & \checkmark \\
+    font & Font used in badges & \mintex{\sffamily} & \checkmark \\
     labelColor & Background color of the left part of the badge & \showColor{default-left} & \checkmark \\
     logo & Logo displayed before the text & & \\
     logoColor & Color of the logo & \showColor{white} & \checkmark \\
@@ -94,7 +94,7 @@ Custom logos can be employed, as in the previous example where an image is loade
 \footnote{Logo of \CTAN is a courtesy of \href{https://gitlab.com/comprehensive-tex-archive-network/ctan-site/-/blob/master/src/artwork/logo/ctan-book-animation-globe.xcf}{\CTAN}.}.
 
 \begin{tcblisting}{title={Customize logo}, lower separated=false}
-\drawBadge[logo=\faFilm]{Movie}{5~\faStar}
+\drawBadge[logo=\faFilm]{Movie}{5~{\normalfont\faStar}}
 \drawBadge[logoColor=black, logo=\faHistory, labelColor=yellow]{Any text}{you like}
 \def\ctan{\includegraphics[height=1em]{doc/img/ctan-white.pdf}}
 \drawBadge[logo=\ctan]{\CTAN}{tikz-shields}
@@ -132,10 +132,14 @@ and not
 The font used inside the badges can also be changed, either by using the \mintex{font} option where both text will be written with the same font;
 either by hard setting the text font.
 
+In some case, weird font combinations are done, leading to raising of warnings such that \texttt{LaTeX Font: Font shape `T1/cmss/m/sc' in size <10> not available. Font shape `T1/cmr/m/sc' tried instead}, or \texttt{LaTeX Font: Font shape `U/fontawesomethree/bx/n' undefined using `U/fontawesomethree/m/n' instead} with fontawesome.
+To avoid them, you might need to add the option \mintinline[breaklines]{tex}{font=\normalfont}, as in the two latter examples here.
+
 \begin{tcblisting}{title={Font}, lower separated=false}
-\drawBadge[font=\bf, baseline=1mm]{Boldface}{font}
-\drawBadge[font=\tt, style=social]{Monospaced}{font}
-\drawBadge[style=social]{\texttt{Personalized}}{\textsc{Fonts}}
+\drawBadge[font=\bfseries, baseline=1mm]{Boldface}{font}
+\drawBadge[font=\ttfamily, style=social]{Monospaced}{font}
+\drawBadge[font=\normalfont, style=social]{\texttt{Personalized}}{\textsc{Fonts}}
+\drawBadge[font=\bfseries, style=social]{\texttt{Personalized}}{\normalfont\faStar}
 \end{tcblisting}
 
 

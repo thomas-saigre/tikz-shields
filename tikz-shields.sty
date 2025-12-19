@@ -21,7 +21,7 @@
 \@ifpackageloaded{ifthen}{}{\RequirePackage{ifthen}}
 
 
-\DeclareOptionX{font}[\sf]{\def\shield@default@font{#1}}
+\DeclareOptionX{font}[\sffamily]{\def\shield@default@font{#1}}
 \DeclareOptionX{labelColor}[default-left]{\def\shield@default@labelColor{#1}}
 \DeclareOptionX{color}[default-blue]{\def\shield@default@color{#1}}
 \DeclareOptionX{colorLeft}[white]{\def\shield@default@colorLeft{#1}}
@@ -215,7 +215,7 @@
             \badge@font%
             \ifx\badge@logo\@empty%
             \else%
-                \droptextnoshadow{\badge@logoColor}{\badge@logo}~%
+                \droptextnoshadow{\badge@logoColor}{\normalfont\badge@logo}~%
             \fi%
             \ifx#2\@empty%
             \else%
