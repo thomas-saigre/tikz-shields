@@ -1,0 +1,24 @@
+%!TeX root=../tikz-shields-doc.tex
+\section{Version history}
+
+\newcommand{\versionentry}[2]{%
+    \vspace{0.2\baselineskip}%
+    \par\noindent%
+    \drawBadge[link={https://github.com/thomas-saigre/tikz-shields/releases/tag/v#1}, baseline=1mm]{Version}{v#1}
+    (#2)%\par
+}
+
+
+\versionentry{0.1}{30/06/2025}
+First version.
+This package allows including shields badges in a \LaTeX{} document, as in shields.io.
+At this point, various styles of badges and other features are available, including clickable links, logos, and color customization options.
+
+
+\versionentry{1.0}{17/10/2025}
+Some fixes and improvements:
+\begin{itemize}
+    \item fix potential incompatibilities with fontawesome (see Section~\ref{sec:fontawesome}) and ensure external packages are not loaded twice,
+    \item add automated CI,
+    \item add badges for scientific publications.
+\end{itemize}
